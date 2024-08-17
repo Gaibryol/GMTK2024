@@ -1690,6 +1690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrassBridge
       objectReference: {fileID: 0}
+    - target: {fileID: 8372052005099148361, guid: 53c0bd99c597a3e4aab0f5865fada5cb, type: 3}
+      propertyPath: bend
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
