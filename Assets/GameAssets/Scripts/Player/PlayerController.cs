@@ -15,16 +15,26 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody2D rbody;
 	private Constants.Player.Inputs lastInput;
 
+	private bool dropping;
+
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
     void Start()
     {
 		rbody = GetComponent<Rigidbody2D>();
 		lastInput = Constants.Player.Inputs.None;
+		dropping = false;
     }
 
     void FixedUpdate()
     {
+		if (dropping)
+		{
+			Debug.Log("dropping");
+			rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
+			return;
+		}
+
 		RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, Constants.Player.RaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, Constants.Player.RaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 		//RaycastHit2D topHit = Physics2D.Raycast(transform.position, Vector2.up, Constants.Player.RaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
@@ -353,6 +363,18 @@ public class PlayerController : MonoBehaviour
 	public void OnDrop(InputAction.CallbackContext context)
 	{
 		Debug.Log("Drop");
+		StartCoroutine(DropCoroutine());
+	}
+
+	private IEnumerator DropCoroutine()
+	{
+		rbody.velocity = Vector2.zero;
+		rbody.gravityScale = 1f;
+		dropping = true;
+
+		yield return new WaitForSeconds(Constants.Player.DropDuration);
+
+		dropping = false;
 	}
 
 	public void OnSplit(InputAction.CallbackContext context)

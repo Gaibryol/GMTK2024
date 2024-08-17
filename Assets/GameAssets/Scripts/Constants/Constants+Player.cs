@@ -8,6 +8,7 @@ public partial class Constants
 	{
 		public const float RaycastDistance = 0.525f;
 		public const float DiagonalRaycastDistance = 0.74246212024f;
+		public const float DropDuration = 0.5f;
 
 		public enum Inputs { A, D, None };
 		public enum Directions { Up, Down, Left, Right, None };
