@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6608236454776194084}
   - component: {fileID: 9160189910112079855}
   - component: {fileID: 3566489147718749460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeightDependentPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
