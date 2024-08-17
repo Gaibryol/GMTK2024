@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable, IGrassBendable, IDandylion, IWeighted
 {
 	[SerializeField, Header("Inputs")] private InputAction move;
 	[SerializeField] private InputAction drop;
@@ -13,21 +13,32 @@ public class PlayerController : MonoBehaviour
 	[SerializeField, Header("Stats")] private float movespeed;
 
 	private Rigidbody2D rbody;
+	private CircleCollider2D coll;
 	private Constants.Player.Inputs lastInput;
 
 	private bool dropping;
+
+	private bool canMove;
+	private IInteractable interactable;
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
     void Start()
     {
 		rbody = GetComponent<Rigidbody2D>();
+		coll = GetComponent<CircleCollider2D>();
 		lastInput = Constants.Player.Inputs.None;
 		dropping = false;
+		canMove = true;
     }
 
     void FixedUpdate()
     {
+		if (!canMove)
+		{
+			return;
+		}
+
 		if (dropping)
 		{
 			Debug.Log("dropping");
@@ -385,6 +396,22 @@ public class PlayerController : MonoBehaviour
 	public void OnInteract(InputAction.CallbackContext context)
 	{
 		Debug.Log("Interact");
+		List<Collider2D> colliders = new List<Collider2D>();
+		Physics2D.OverlapCollider(coll, colliders);
+		foreach (Collider2D collider in colliders)
+		{
+			Debug.Log(collider.gameObject.name);
+			IInteractable interactable = collider.GetComponent<IInteractable>();
+			if (interactable != null)
+			{
+				if (interactable.Interact(gameObject))
+				{
+					this.interactable = interactable;
+					return;
+				}
+			}
+		}
+
 	}
 
 	private void OnEnable()
@@ -411,5 +438,36 @@ public class PlayerController : MonoBehaviour
 		drop.Disable();
 		split.Disable();
 		interact.Disable();
+	}
+
+	public bool CanBendGrass()
+	{
+		return rbody.mass > 1;
+	}
+
+	public bool IsHeavyPath()
+	{
+		return rbody.mass > 1;
+	}
+
+	public void OnAttached(GameObject dandylion)
+	{
+		canMove = false;
+		transform.parent = dandylion.transform;
+		rbody.velocity = Vector3.zero;
+		rbody.gravityScale = 0;
+	}
+
+	public void OnDetached(GameObject dandylion)
+	{
+		canMove = true;
+		interactable = null;
+		transform.parent = null;
+		rbody.gravityScale = 1;
+	}
+
+	public float GetWeight()
+	{
+		return rbody.mass;
 	}
 }
