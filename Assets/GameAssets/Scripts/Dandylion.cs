@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 
+/*
+ * Requires player to implmenent IDandylion
+ * Follows a spline depending on IsHeavyPath()
+ * Resets at the end of the path or interaction
+ */
 [RequireComponent(typeof(Collider2D))]
 public class Dandylion : MonoBehaviour, IInteractable
 {
