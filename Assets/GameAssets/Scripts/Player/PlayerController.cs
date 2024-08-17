@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	[SerializeField, Header("Stats")] private float movespeed;
 
 	private Rigidbody2D rbody;
-	private CircleCollider2D coll;
+	private Collider2D coll;
 	private Constants.Player.Inputs lastInput;
 
 	private bool dropping;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
     void Start()
     {
 		rbody = GetComponent<Rigidbody2D>();
-		coll = GetComponent<CircleCollider2D>();
+		coll = GetComponent<Collider2D>();
 		lastInput = Constants.Player.Inputs.None;
 		dropping = false;
 		canMove = true;
@@ -46,10 +46,10 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			return;
 		}
 
-		RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, Constants.Player.RaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
-		RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, Constants.Player.RaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
+		RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
+		RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
 		//RaycastHit2D topHit = Physics2D.Raycast(transform.position, Vector2.up, Constants.Player.RaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
-		RaycastHit2D bottomHit = Physics2D.Raycast(transform.position, Vector2.down, Constants.Player.RaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
+		RaycastHit2D bottomHit = Physics2D.Raycast(transform.position, Vector2.down, Constants.Player.RaycastDistance.y, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D bottomRightHit = Physics2D.Raycast(transform.position, new Vector2(1f, -1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D bottomLeftHit = Physics2D.Raycast(transform.position, new Vector2(-1f, -1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D topRightHit = Physics2D.Raycast(transform.position, new Vector2(1f, 1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
