@@ -41,8 +41,8 @@ public class GrassBridge : MonoBehaviour
         float distance = Vector2.Distance(boneTransforms[0].position, trackedObject.position);
         float boneDistance = Vector2.Distance(boneTransforms[0].position, boneTransforms[boneTransforms.Length - 1].position);
         float traveledPecent = distance / boneDistance;
-        bend = Mathf.Lerp(0, 1, traveledPecent);
-        
+        float bendTarget = Mathf.Lerp(0, 1, traveledPecent);
+        bend = Mathf.MoveTowards(bend, bendTarget, Time.deltaTime);
         animator.SetFloat("bend", bend);
         
     }
