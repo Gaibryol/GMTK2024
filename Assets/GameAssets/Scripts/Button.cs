@@ -7,6 +7,7 @@ using UnityEngine;
 * The object must implement IButtonInteractable for it to interact with the button
 * The responding object implementing IButtonInteractableListener will be notified
 */
+[RequireComponent(typeof(Collider2D))]
 public class Button : MonoBehaviour
 {
     [SerializeField] private GameObject buttonListener;

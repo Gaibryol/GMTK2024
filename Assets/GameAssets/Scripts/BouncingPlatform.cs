@@ -7,10 +7,11 @@ using UnityEngine;
 *  Requires to implment IBounceable and have a RigidBody2D
 *  Can override forceMultiplier in IBounceable to scale the force exerted on the object.
 */
+[RequireComponent(typeof(Collider2D))]
 public class BouncingPlatform : MonoBehaviour
 {
     
-    [SerializeField] private float upwardsForce = 350f;
+    [SerializeField] private float upwardsForce = 7f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -27,6 +28,6 @@ public class BouncingPlatform : MonoBehaviour
             return;
         }
 
-        rbody.AddForceY(upwardsForce * bounceable.forceMultiplier);
+        rbody.AddForceY(upwardsForce * bounceable.forceMultiplier * rbody.mass, ForceMode2D.Impulse);
     }
 }
