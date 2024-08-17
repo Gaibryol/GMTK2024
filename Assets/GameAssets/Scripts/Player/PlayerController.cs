@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.U2D.Animation;
 
 public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable, IGrassBendable, IDandylion, IWeighted
 {
@@ -21,6 +22,9 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	private bool canMove;
 	private IInteractable interactable;
 
+	[SerializeField] private SpriteSkin skin;
+	private Transform[] boneTransforms;
+
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
     void Start()
@@ -30,6 +34,8 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		lastInput = Constants.Player.Inputs.None;
 		dropping = false;
 		canMove = true;
+
+		boneTransforms = skin.boneTransforms;
     }
 
     void FixedUpdate()
@@ -46,14 +52,15 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			return;
 		}
 
+		Transform headBone = boneTransforms[boneTransforms.Length - 1];
 		RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
 		//RaycastHit2D topHit = Physics2D.Raycast(transform.position, Vector2.up, Constants.Player.RaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D bottomHit = Physics2D.Raycast(transform.position, Vector2.down, Constants.Player.RaycastDistance.y, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D bottomRightHit = Physics2D.Raycast(transform.position, new Vector2(1f, -1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D bottomLeftHit = Physics2D.Raycast(transform.position, new Vector2(-1f, -1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
-		RaycastHit2D topRightHit = Physics2D.Raycast(transform.position, new Vector2(1f, 1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
-		RaycastHit2D topLeftHit = Physics2D.Raycast(transform.position, new Vector2(-1f, 1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
+		//RaycastHit2D topRightHit = Physics2D.Raycast(transform.position, new Vector2(1f, 1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
+		//RaycastHit2D topLeftHit = Physics2D.Raycast(transform.position, new Vector2(-1f, 1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 
 		//Debug.Log("Right: " + rightHit.collider);
 		//Debug.Log("Left: " + leftHit.collider);
@@ -364,16 +371,24 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		if (context.ReadValue<float>() > 0)
 		{
 			lastInput = Constants.Player.Inputs.D;
+			transform.localScale = new Vector3(1f, 1f, 1f);
 		}
 		else if (context.ReadValue<float>() < 0)
 		{
 			lastInput = Constants.Player.Inputs.A;
+			transform.localScale = new Vector3(-1f, 1f, 1f);
 		}
 	}
 
 	public void OnDrop(InputAction.CallbackContext context)
 	{
 		Debug.Log("Drop");
+
+		if (interactable != null)
+		{
+			interactable.StopInteract();
+		}
+
 		StartCoroutine(DropCoroutine());
 	}
 
