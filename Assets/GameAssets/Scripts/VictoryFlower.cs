@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VictoryFlower : MonoBehaviour, IInteractable
+public class VictoryFlower : MonoBehaviour
 {
     [SerializeField] private string nextLevel;
 
@@ -10,18 +10,13 @@ public class VictoryFlower : MonoBehaviour, IInteractable
 
     private bool activated = false;
 
-    public bool Interact(GameObject source)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (activated) { return false; }
+        if (activated) { return; }
 
         activated = true;
         eventBroker.Publish(this, new LevelEvents.EndLevel(nextLevel, true));
-        return false;
-    }
-
-    public bool StopInteract()
-    {
-        return true;
+        return;
     }
 
 }

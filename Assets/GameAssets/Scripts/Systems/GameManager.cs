@@ -47,6 +47,14 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelEnd(BrokerEvent<LevelEvents.EndLevel> @event)
     {
-        SceneManager.LoadScene(@event.Payload.NextLevel);
+        if (@event.Payload.Victory)
+        {
+            SceneManager.LoadScene(@event.Payload.NextLevel);
+
+        } else
+        {
+            SceneManager.LoadScene(currentSceneName);
+
+        }
     }
 }
