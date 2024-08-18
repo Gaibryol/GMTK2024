@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
             skin.boneTransforms[i].localEulerAngles = new Vector3(boneTransform.eulerAngles.x, boneTransform.eulerAngles.y, zRot);
         }
 
-        //HandleBones();
+        HandleBones();
     }
 
     void FixedUpdate()
@@ -462,16 +462,18 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		{
 			if (transform.localScale.x > 0)
 			{
-				boneBlend = 1f;
+				boneBlend = -1f;
+				boneTailBlend = 0f;
 			}
 			else if (transform.localScale.x < 0)
 			{
-				boneBlend = -1f;
+				boneTailBlend = -1f;
 			}
 		}
 		else
 		{
 			boneBlend = 0;
+			boneTailBlend = 0;
 		}
 	}
 
@@ -517,6 +519,9 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		rbody.gravityScale = 1f;
 		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 		dropping = true;
+
+		boneBlend = 0f;
+		boneTailBlend = 0f;
 
 		yield return new WaitForSeconds(Constants.Player.DropDuration);
 
