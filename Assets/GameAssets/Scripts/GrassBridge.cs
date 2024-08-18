@@ -21,6 +21,8 @@ public class GrassBridge : MonoBehaviour
 
     private Transform[] boneTransforms;
 
+    [SerializeField] private int lastBoneIndex = 11;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -39,7 +41,7 @@ public class GrassBridge : MonoBehaviour
         }
 
         float distance = Vector2.Distance(boneTransforms[0].position, trackedObject.position);
-        float boneDistance = Vector2.Distance(boneTransforms[0].position, boneTransforms[boneTransforms.Length - 1].position);
+        float boneDistance = Vector2.Distance(boneTransforms[0].position, boneTransforms[lastBoneIndex].position);
         float traveledPecent = distance / boneDistance;
         float bendTarget = Mathf.Lerp(0, 1, traveledPecent);
         bend = Mathf.MoveTowards(bend, bendTarget, Time.deltaTime);
@@ -57,6 +59,7 @@ public class GrassBridge : MonoBehaviour
     {
         IGrassBendable grassBendable = collision.GetComponent<IGrassBendable>();
         if (grassBendable == null) { return; }
+        Debug.Log("enter");
         trackedObject = collision.transform;
     }
 

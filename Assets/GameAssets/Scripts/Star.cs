@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Star : MonoBehaviour, IInteractable
+public class Star : MonoBehaviour
 {
-    public bool Interact(GameObject source)
-    {
-        throw new System.NotImplementedException();
+    private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
-    }
-
-    public bool StopInteract()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        throw new System.NotImplementedException();
+        eventBroker.Publish(this, new StarEvents.AddStar());
+        Destroy(gameObject, .1f);
     }
 }
