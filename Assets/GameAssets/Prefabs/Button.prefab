@@ -76,9 +76,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.19339621, b: 0.19339621, a: 1}
+  m_SortingOrder: 98
+  m_Sprite: {fileID: -2014612069552710963, guid: 41bdd9c54240d33499e0fb799a5e8824, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,6 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonListener: {fileID: 0}
+  offSprite: {fileID: -2014612069552710963, guid: 41bdd9c54240d33499e0fb799a5e8824, type: 3}
+  onSprite: {fileID: 5159590690671855377, guid: def1769f2ea7a9d4cb01654b6f8550e3, type: 3}
 --- !u!61 &5661799622110955150
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,8 +140,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.3, y: 1.6}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

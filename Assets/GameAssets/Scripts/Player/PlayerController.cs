@@ -629,6 +629,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	{
 		canMove = false;
 		transform.parent = dandylion.transform;
+		transform.localPosition = Vector3.zero;
 		rbody.velocity = Vector3.zero;
 		rbody.gravityScale = 0;
 	}

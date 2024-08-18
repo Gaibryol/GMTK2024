@@ -16,6 +16,10 @@ public class Button : MonoBehaviour
     private bool pressed;
     private List<IButtonInteractable> pressedObjects = new List<IButtonInteractable>();
 
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite offSprite;
+    [SerializeField] private Sprite onSprite;
+
     void Start()
     {
         interactableListener = buttonListener.GetComponent<IButtonInteractableListener>();
@@ -23,6 +27,8 @@ public class Button : MonoBehaviour
         {
             Debug.LogError("Button listner is not implementing IButtonInteractableListener", this);
         }
+        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +43,7 @@ public class Button : MonoBehaviour
         if (pressed)
         {
             interactableListener.OnButtonPressed();
+            spriteRenderer.sprite = onSprite;
         }
     }
 
@@ -52,6 +59,7 @@ public class Button : MonoBehaviour
         if (!pressed)
         {
             interactableListener.OnButtonReleased();
+            spriteRenderer.sprite = offSprite;
         }
     }
 }

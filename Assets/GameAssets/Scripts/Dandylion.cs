@@ -17,7 +17,7 @@ public class Dandylion : MonoBehaviour, IInteractable
     private Material material;
     private int opacityID = Shader.PropertyToID("_opacity");
 
-    private SplineAnimate splineAnimate;
+    [SerializeField] private SplineAnimate splineAnimate;
     private float dissolveAmount = 0f;
 
     private enum DandylionState { Start, Playing, End, Reset }
@@ -27,8 +27,8 @@ public class Dandylion : MonoBehaviour, IInteractable
 
     void Start()
     {
-        splineAnimate = GetComponent<SplineAnimate>();
-        material = GetComponent<SpriteRenderer>().material;
+        //splineAnimate = GetComponent<SplineAnimate>();
+        //material = GetComponent<SpriteRenderer>().material;
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class Dandylion : MonoBehaviour, IInteractable
                 StopInteract();
             } else
             {
-                attachedSource.OnAttached(gameObject);
+                attachedSource.OnAttached(splineAnimate.gameObject);
             }
         } else if (state == DandylionState.End)
         {
@@ -80,7 +80,7 @@ public class Dandylion : MonoBehaviour, IInteractable
     public bool StopInteract()
     {
         state = DandylionState.End;
-        attachedSource.OnDetached(gameObject);
+        attachedSource.OnDetached(splineAnimate.gameObject);
         attachedSource = null;
         return true;
     }
@@ -103,7 +103,7 @@ public class Dandylion : MonoBehaviour, IInteractable
 
     private void SetOpacity(float opacity)
     {
-        material.SetFloat(opacityID, opacity);
+        //material.SetFloat(opacityID, opacity);
     }
 
 }

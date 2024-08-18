@@ -10,8 +10,14 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class BouncingPlatform : MonoBehaviour
 {
+    private Animator animator;
     
     [SerializeField] private float upwardsForce = 7f;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -28,6 +34,47 @@ public class BouncingPlatform : MonoBehaviour
             return;
         }
 
+        if (bounceable.forceMultiplier > 0.5)
+        {
+            animator.SetTrigger("Bounce");
+        }
         rbody.AddForceY(upwardsForce * bounceable.forceMultiplier * rbody.mass, ForceMode2D.Impulse);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        IBounceable bounceable = collision.gameObject.GetComponent<IBounceable>();
+        if (bounceable == null)
+        {
+            return;
+        }
+
+        Rigidbody2D rbody = collision.gameObject.GetComponent<Rigidbody2D>();
+
+        if (rbody == null)
+        {
+            return;
+        }
+        
+        animator.SetBool("InRange", true);
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        IBounceable bounceable = collision.gameObject.GetComponent<IBounceable>();
+        if (bounceable == null)
+        {
+            return;
+        }
+
+        Rigidbody2D rbody = collision.gameObject.GetComponent<Rigidbody2D>();
+
+        if (rbody == null)
+        {
+            return;
+        }
+
+        animator.SetBool("InRange", false);
     }
 }
