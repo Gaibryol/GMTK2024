@@ -412,8 +412,19 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		{
 			Instantiate(blobPrefab, transform.position - new Vector3(1f, 0), Quaternion.identity);
 			rbody.mass = 1f;
+
+			GameObject[] longObjects = GameObject.FindGameObjectsWithTag("Long");
+			foreach (GameObject obj in longObjects)
+			{
+				obj.GetComponent<Collider2D>().enabled = false;
+			}
+
+			GameObject[] shortObjects = GameObject.FindGameObjectsWithTag("Short");
+			foreach (GameObject obj in shortObjects)
+			{
+				obj.GetComponent<Collider2D>().enabled = true;
+			}
 		}
-		
 	}
 
 	public void OnInteract(InputAction.CallbackContext context)
@@ -441,6 +452,18 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	{
 		rbody.mass = 2f;
 		Destroy(blob);
+
+		GameObject[] longObjects = GameObject.FindGameObjectsWithTag("Long");
+		foreach (GameObject obj in longObjects)
+		{
+			obj.GetComponent<Collider2D>().enabled = true;
+		}
+
+		GameObject[] shortObjects = GameObject.FindGameObjectsWithTag("Short");
+		foreach (GameObject obj in shortObjects)
+		{
+			obj.GetComponent<Collider2D>().enabled = false;
+		}
 	}
 
 	private void OnEnable()
