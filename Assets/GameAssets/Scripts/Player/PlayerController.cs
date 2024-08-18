@@ -62,7 +62,9 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
             }
             skin.boneTransforms[i].localEulerAngles = new Vector3(boneTransform.eulerAngles.x, boneTransform.eulerAngles.y, zRot);
         }
-    }
+
+		HandleBones();
+	}
 
     void FixedUpdate()
     {
@@ -77,8 +79,6 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 			return;
 		}
-
-		HandleBones();
 
 		Transform headBone = boneTransforms[boneTransforms.Length - 1];
 		RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
@@ -413,23 +413,44 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	private void HandleBones()
 	{
-		Vector2 direction = Vector2.right;
-		if (transform.rotation.eulerAngles.z == 90)
+		Vector2 headDirection = transform.TransformDirection(Vector2.down);
+		Vector2 bodyDirection = transform.TransformDirection(transform.localScale.x > 0 ? Vector2.right : Vector2.left);
+
+		RaycastHit2D headHit = Physics2D.Raycast(transform.position, headDirection, Constants.Player.HeadRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
+		RaycastHit2D bodyHit = Physics2D.Raycast(transform.position, bodyDirection, Constants.Player.BoneRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
+
+		Debug.DrawRay(transform.position, bodyDirection, Color.red, 5f);
+		Debug.DrawRay(transform.position, headDirection, Color.cyan, 5f);
+
+		Debug.Log("Body: " + bodyHit.collider);
+		Debug.Log("Head: " + headHit.collider);
+
+		if (bodyHit.collider != null)
 		{
-			direction = Vector2.down;
+			if (bodyHit.normal.x != 0)
+			{
+				boneBlend = -bodyHit.normal.x * transform.localScale.x;
+			}
+			else if(bodyHit.normal.y != 0)
+			{
+				boneBlend = Mathf.Abs(bodyHit.normal.y);
+			}
 		}
-		else if (transform.rotation.eulerAngles.z == -90)
+		else if (headHit.collider == null)
 		{
-			direction = Vector2.left;
+			if (transform.localScale.x > 0)
+			{
+				boneBlend = 1f;
+			}
+			else if (transform.localScale.x < 0)
+			{
+				boneBlend = -1f;
+			}
 		}
-
-		direction = direction * transform.localScale.x;
-
-		Debug.Log("Direction: " + direction);
-		Debug.Log("Bone: " + boneTransforms[boneTransforms.Length - 1]);
-
-		RaycastHit2D hit = Physics2D.Raycast(boneTransforms[boneTransforms.Length - 1].position, direction, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
-		Debug.DrawRay(boneTransforms[boneTransforms.Length - 1].position, direction, Color.green, 5f);
+		else
+		{
+			boneBlend = 0;
+		}
 	}
 
 	public void OnMove(InputAction.CallbackContext context)
