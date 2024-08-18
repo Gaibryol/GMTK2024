@@ -40,5 +40,20 @@ public class ButtonControlledPlatform : MonoBehaviour, IButtonInteractableListen
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IButtonInteractable buttonInteractable = collision.GetComponent<IButtonInteractable>();
+        if (buttonInteractable == null) { return; }
+        collision.transform.SetParent(transform, true);
 
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        IButtonInteractable buttonInteractable = collision.GetComponent<IButtonInteractable>();
+        if (buttonInteractable == null) { return; }
+
+        collision.transform.SetParent(null, true);
+
+    }
 }

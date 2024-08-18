@@ -405,7 +405,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			if (facingRight)
 			{
 				facingRight = false;
-				transform.localScale = new Vector3(1f, 1f, 1f);
+				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			}
 		}
 		else if (context.ReadValue<float>() < 0)
@@ -415,7 +415,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			if (!facingRight)
 			{
 				facingRight = true;
-				transform.localScale = new Vector3(-1f, 1f, 1f);
+				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x)*-1f, transform.localScale.y, transform.localScale.z);
 			}
 		}
 	}
