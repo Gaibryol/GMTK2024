@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	[SerializeField] private InputAction split;
 	[SerializeField] private InputAction interact;
 
+	[SerializeField] private List<Vector3> boneStartEndRotation3;
+    [SerializeField, Range(-1, 1)] private float boneBlend = 0;
+
 	[SerializeField, Header("Stats")] private float movespeed;
 
 	private Rigidbody2D rbody;
@@ -36,6 +39,24 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		canMove = true;
 
 		boneTransforms = skin.boneTransforms;
+    }
+
+    private void LateUpdate()
+    {
+        for (int i = 0; i < boneTransforms.Length; i++)
+        {
+            Transform boneTransform = boneTransforms[i];
+			float zRot = boneStartEndRotation3[i].x;
+
+            if (boneBlend >= 0)
+			{
+                zRot = Mathf.Lerp(boneStartEndRotation3[i].x, boneStartEndRotation3[i].y, boneBlend);
+            } else
+			{
+                zRot = Mathf.Lerp(boneStartEndRotation3[i].x, boneStartEndRotation3[i].z, boneBlend * -1f);
+            }
+            skin.boneTransforms[i].localEulerAngles = new Vector3(boneTransform.eulerAngles.x, boneTransform.eulerAngles.y, zRot);
+        }
     }
 
     void FixedUpdate()
