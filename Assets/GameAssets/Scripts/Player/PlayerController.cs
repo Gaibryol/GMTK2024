@@ -15,8 +15,10 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	[SerializeField] private List<Vector3> boneStartEndRotation3;
     [SerializeField, Range(-1, 1)] private float boneBlend = 0;
+    [SerializeField] private List<Vector3> boneTailStartEndRotation3;
+    [SerializeField, Range(-1, 1)] private float boneTailBlend = 0;
 
-	[SerializeField, Header("Stats")] private float movespeed;
+    [SerializeField, Header("Stats")] private float movespeed;
 
 	[SerializeField, Header("Splitting")] private GameObject blobPrefab;
 
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
     private void LateUpdate()
     {
-        for (int i = 0; i < boneTransforms.Length; i++)
+        for (int i = 0; i < 7; i++)
         {
             Transform boneTransform = boneTransforms[i];
 			float zRot = boneStartEndRotation3[i].x;
@@ -66,8 +68,25 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
             skin.boneTransforms[i].localEulerAngles = new Vector3(boneTransform.eulerAngles.x, boneTransform.eulerAngles.y, zRot);
         }
 
-		HandleBones();
-	}
+        for (int i = 7; i < boneTransforms.Length; i++)
+        {
+            Transform boneTransform = boneTransforms[i];
+			int inex = i - 7;
+            float zRot = boneTailStartEndRotation3[inex].x;
+
+            if (boneTailBlend >= 0)
+            {
+                zRot = Mathf.Lerp(boneTailStartEndRotation3[inex].x, boneTailStartEndRotation3[inex].y, boneTailBlend);
+            }
+            else
+            {
+                zRot = Mathf.Lerp(boneTailStartEndRotation3[inex].x, boneTailStartEndRotation3[inex].z, boneTailBlend * -1f);
+            }
+            skin.boneTransforms[i].localEulerAngles = new Vector3(boneTransform.eulerAngles.x, boneTransform.eulerAngles.y, zRot);
+        }
+
+        //HandleBones();
+    }
 
     void FixedUpdate()
     {
