@@ -14,6 +14,7 @@ public class Button : MonoBehaviour
     private IButtonInteractableListener interactableListener;
 
     private bool pressed;
+    private List<IButtonInteractable> pressedObjects = new List<IButtonInteractable>();
 
     void Start()
     {
@@ -26,27 +27,31 @@ public class Button : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (pressed) { return; }
-
         IButtonInteractable buttonInteractable = collision.GetComponent<IButtonInteractable>();
 
         if (buttonInteractable == null) { return; }
-        Debug.Log("here");
+        
+        pressedObjects.Add(buttonInteractable);
 
-        pressed = true;
-        interactableListener.OnButtonPressed();
+        pressed = pressedObjects.Count > 0;
+        if (pressed)
+        {
+            interactableListener.OnButtonPressed();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!pressed) { return; }
-
         IButtonInteractable buttonInteractable = collision.GetComponent<IButtonInteractable>();
 
         if (buttonInteractable == null) { return; }
 
-        pressed = false;
-        interactableListener.OnButtonReleased();
+        pressedObjects.Remove(buttonInteractable);
+        pressed = pressedObjects.Count > 0;
+        
+        if (!pressed)
+        {
+            interactableListener.OnButtonReleased();
+        }
     }
 }
