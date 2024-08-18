@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -228,7 +228,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Dandelion-idle-sprite_0: -7760833174892215112
+      Dandelion-idle-sprite_1: -8045008177354319883
+      Dandelion-idle-sprite_2: -1922995346007179908
+      Dandelion-idle-sprite_3: 817026453965561348
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Star : MonoBehaviour, IInteractable
+public class VictoryFlower : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string nextLevel;
+
     private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
+
+    private bool activated = false;
 
     public bool Interact(GameObject source)
     {
-        eventBroker.Publish(this, new StarEvents.AddStar());
-        Destroy(gameObject, .1f);
+        if (activated) { return false; }
+
+        activated = true;
+        eventBroker.Publish(this, new LevelEvents.EndLevel(nextLevel, true));
         return false;
     }
 
@@ -17,4 +23,5 @@ public class Star : MonoBehaviour, IInteractable
     {
         return true;
     }
+
 }
