@@ -413,8 +413,23 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	private void HandleBones()
 	{
-		RaycastHit2D hit = Physics2D.Raycast(boneTransforms[boneTransforms.Length - 1].position, new Vector2(1, 0), Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
-		Debug.DrawRay(boneTransforms[boneTransforms.Length - 1].position, Vector2.right, Color.green, 20f);
+		Vector2 direction = Vector2.right;
+		if (transform.rotation.eulerAngles.z == 90)
+		{
+			direction = Vector2.down;
+		}
+		else if (transform.rotation.eulerAngles.z == -90)
+		{
+			direction = Vector2.left;
+		}
+
+		direction = direction * transform.localScale.x;
+
+		Debug.Log("Direction: " + direction);
+		Debug.Log("Bone: " + boneTransforms[boneTransforms.Length - 1]);
+
+		RaycastHit2D hit = Physics2D.Raycast(boneTransforms[boneTransforms.Length - 1].position, direction, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
+		Debug.DrawRay(boneTransforms[boneTransforms.Length - 1].position, direction, Color.green, 5f);
 	}
 
 	public void OnMove(InputAction.CallbackContext context)
@@ -423,9 +438,9 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		{
 			lastInput = Constants.Player.Inputs.D;
 
-			if (facingRight)
+			if (!facingRight)
 			{
-				facingRight = false;
+				facingRight = true;
 				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			}
 		}
@@ -433,10 +448,10 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		{
 			lastInput = Constants.Player.Inputs.A;
 
-			if (!facingRight)
+			if (facingRight)
 			{
-				facingRight = true;
-				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x)*-1f, transform.localScale.y, transform.localScale.z);
+				facingRight = false;
+				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1f, transform.localScale.y, transform.localScale.z);
 			}
 		}
 	}
