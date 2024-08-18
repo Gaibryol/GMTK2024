@@ -78,6 +78,8 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			return;
 		}
 
+		HandleBones();
+
 		Transform headBone = boneTransforms[boneTransforms.Length - 1];
 		RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
@@ -101,6 +103,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			rbody.velocityX = 0f;
 			rbody.velocityY = move.ReadValue<float>() * movespeed * Time.deltaTime;
 			rbody.gravityScale = 0f;
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 90f));
 		}
 		else if (rightHit.collider == null && leftHit.collider != null && bottomHit.collider == null)
 		{
@@ -108,6 +111,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			rbody.velocityX = 0f;
 			rbody.velocityY = -move.ReadValue<float>() * movespeed * Time.deltaTime;
 			rbody.gravityScale = 0f;
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -90f));
 		}
 		//else if (rightHit.collider == null && leftHit.collider == null && topHit.collider == null && bottomHit.collider == null)
 		//{
@@ -120,6 +124,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			// Wall on bottom
 			rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 			rbody.gravityScale = 1f;
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 		}
 		else if (rightHit.collider != null && bottomHit.collider != null)
 		{
@@ -208,6 +213,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 					rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.velocityY = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.gravityScale = 1f;
+					transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 				}
 			}
 			else if (Mathf.Abs(bottomRightHit.normal.y) == 1f)
@@ -218,6 +224,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 					rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.velocityY = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.gravityScale = 1f;
+					transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 90f));
 				}
 				else if (lastInput == Constants.Player.Inputs.D)
 				{
@@ -234,12 +241,14 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 					rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.velocityY = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.gravityScale = 1f;
+					transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -Mathf.Atan(bottomRightHit.normal.x / bottomRightHit.normal.y) * 180f / Mathf.PI));
 				}
 				else if (move.ReadValue<float>() > 0f)
 				{
 					// Moving up a ramp on the right
 					rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.gravityScale = 1f;
+					transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -Mathf.Atan(bottomRightHit.normal.x / bottomRightHit.normal.y) * 180f / Mathf.PI));
 				}
 				else
 				{
@@ -260,6 +269,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 					rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.velocityY = -move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.gravityScale = 1f;
+					transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 				}
 				else if (lastInput == Constants.Player.Inputs.D)
 				{
@@ -267,6 +277,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 					rbody.velocityX = 0;
 					rbody.velocityY = -move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.gravityScale = 1f;
+					transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -90f));
 				}
 			}
 			else if (Mathf.Abs(bottomLeftHit.normal.y) == 1f)
@@ -285,6 +296,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 					rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.velocityY = -move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.gravityScale = 1f;
+					transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 				}
 			}
 			else
@@ -294,7 +306,8 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 					// Moving up a ramp on the left
 					rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.gravityScale = 1f;
-					
+					transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -Mathf.Atan(bottomLeftHit.normal.x / bottomLeftHit.normal.y) * 180f / Mathf.PI));
+
 				}
 				else if (move.ReadValue<float>() > 0f)
 				{
@@ -302,6 +315,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 					rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 					rbody.velocityY = -Mathf.Abs(move.ReadValue<float>()) * movespeed * Time.deltaTime;
 					rbody.gravityScale = 1f;
+					transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -Mathf.Atan(bottomLeftHit.normal.x / bottomLeftHit.normal.y) * 180f / Mathf.PI));
 				}
 				else
 				{
@@ -393,7 +407,14 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			// Freefall, allow for air strafe
 			rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 			rbody.gravityScale = 1f;
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 		}
+	}
+
+	private void HandleBones()
+	{
+		RaycastHit2D hit = Physics2D.Raycast(boneTransforms[boneTransforms.Length - 1].position, new Vector2(1, 0), Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
+		Debug.DrawRay(boneTransforms[boneTransforms.Length - 1].position, Vector2.right, Color.green, 20f);
 	}
 
 	public void OnMove(InputAction.CallbackContext context)
@@ -436,6 +457,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	{
 		rbody.velocity = Vector2.zero;
 		rbody.gravityScale = 1f;
+		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 		dropping = true;
 
 		yield return new WaitForSeconds(Constants.Player.DropDuration);
