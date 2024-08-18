@@ -9,11 +9,12 @@ public partial class Constants
 		public static readonly Vector2 RaycastDistance = new Vector2(0.525f, 0.525f);
 		public const float DiagonalRaycastDistance = 0.74246212024f;
 		public const float DropDuration = 0.5f;
-		public const float BoneRaycastDistance = 1.8f;
-		public static readonly Vector2 HeadRaycastOffset = new Vector2(0.5f, 0f);
-		public const float HeadRaycastDistance = 1f;
+		public const float BoneRaycastDistance = 1.5f;
+		public const float BoneDownRaycastDistance = 1f;
+		public const float CirclecastRadius = 0.2f;
 
 		public enum Inputs { A, D, None };
-		public enum Directions { Up, Down, Left, Right, None };
+
+		public enum Orientations { Flat, WallOnRight, WallOnLeft };
 	}
 }
