@@ -80,8 +80,12 @@ public class Dandylion : MonoBehaviour, IInteractable
     public bool StopInteract()
     {
         state = DandylionState.End;
-        attachedSource.OnDetached(splineAnimate.gameObject);
-        attachedSource = null;
+        if (attachedSource != null )
+        {
+            attachedSource.OnDetached(splineAnimate.gameObject);
+            attachedSource = null;
+        }
+        
         return true;
     }
 
