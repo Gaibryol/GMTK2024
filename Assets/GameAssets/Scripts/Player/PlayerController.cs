@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.U2D.Animation;
+
 
 public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable, IGrassBendable, IDandylion, IWeighted
 {
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
+    public float forceMultiplier { get { return rbody.mass == 1 ? 0.5f : 1f; } }
     void Start()
     {
 		rbody = GetComponent<Rigidbody2D>();
