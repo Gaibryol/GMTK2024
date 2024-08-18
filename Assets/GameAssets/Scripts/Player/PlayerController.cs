@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	[SerializeField, Header("Stats")] private float movespeed;
 
+	[SerializeField, Header("Splitting")] private GameObject blobPrefab;
+
 	private Rigidbody2D rbody;
 	private Collider2D coll;
 	private Constants.Player.Inputs lastInput;
@@ -406,6 +408,12 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	public void OnSplit(InputAction.CallbackContext context)
 	{
 		Debug.Log("Split");
+		if (rbody.mass > 1f)
+		{
+			Instantiate(blobPrefab, transform.position - new Vector3(1f, 0), Quaternion.identity);
+			rbody.mass = 1f;
+		}
+		
 	}
 
 	public void OnInteract(InputAction.CallbackContext context)
@@ -427,6 +435,12 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			}
 		}
 
+	}
+
+	public void PickupBlob(GameObject blob)
+	{
+		rbody.mass = 2f;
+		Destroy(blob);
 	}
 
 	private void OnEnable()
