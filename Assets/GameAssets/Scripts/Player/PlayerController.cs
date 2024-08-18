@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	[SerializeField] private SpriteSkin skin;
 	private Transform[] boneTransforms;
 
+	private bool facingRight;
+
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
     void Start()
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		lastInput = Constants.Player.Inputs.None;
 		dropping = false;
 		canMove = true;
+		facingRight = true;
 
 		boneTransforms = skin.boneTransforms;
     }
@@ -126,12 +129,14 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 				// Was coming down wall, move off wall
 				rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 				rbody.gravityScale = 1f;
+				transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 			}
 			else if (lastInput == Constants.Player.Inputs.D)
 			{
 				// Was moving towards wall, go up wall
 				rbody.velocityY = move.ReadValue<float>() * movespeed * Time.deltaTime;
 				rbody.gravityScale = 0f;
+				transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 90f));
 			}
 		}
 		else if (leftHit.collider != null && bottomHit.collider != null)
@@ -142,12 +147,14 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 				// Was moving towards wall, go up wall
 				rbody.velocityY = -move.ReadValue<float>() * movespeed * Time.deltaTime;
 				rbody.gravityScale = 0f;
+				transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -90f));
 			}
 			else if (lastInput == Constants.Player.Inputs.D)
 			{
 				// Was coming down wall, move off wall
 				rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 				rbody.gravityScale = 1f;
+				transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 			}
 		}
 		//else if (leftHit.collider != null && topHit.collider != null)
@@ -394,12 +401,22 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		if (context.ReadValue<float>() > 0)
 		{
 			lastInput = Constants.Player.Inputs.D;
-			transform.localScale = new Vector3(1f, 1f, 1f);
+
+			if (facingRight)
+			{
+				facingRight = false;
+				transform.localScale = new Vector3(1f, 1f, 1f);
+			}
 		}
 		else if (context.ReadValue<float>() < 0)
 		{
 			lastInput = Constants.Player.Inputs.A;
-			transform.localScale = new Vector3(-1f, 1f, 1f);
+
+			if (!facingRight)
+			{
+				facingRight = true;
+				transform.localScale = new Vector3(-1f, 1f, 1f);
+			}
 		}
 	}
 
