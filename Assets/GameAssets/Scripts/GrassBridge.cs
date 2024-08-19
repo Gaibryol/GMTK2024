@@ -63,6 +63,13 @@ public class GrassBridge : MonoBehaviour
         trackedObject = collision.transform;
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        IGrassBendable grassBendable = collision.GetComponent<IGrassBendable>();
+        if (grassBendable == null) { return; }
+        trackedObject = collision.transform;
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         IGrassBendable grassBendable = collision.GetComponent<IGrassBendable>();
