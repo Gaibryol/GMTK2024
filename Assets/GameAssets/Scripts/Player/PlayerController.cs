@@ -742,9 +742,10 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	public void OnSplit(InputAction.CallbackContext context)
 	{
-		Debug.Log("Split");
 		if (rbody.mass > 1f)
 		{
+			anim.SetTrigger("LongSplitTrigger");
+
 			Instantiate(blobPrefab, transform.position - new Vector3(1f, 0), Quaternion.identity);
 			rbody.mass = 1f;
 
@@ -844,6 +845,15 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		transform.localPosition = Vector3.zero;
 		rbody.velocity = Vector3.zero;
 		rbody.gravityScale = 0;
+		
+		if (rbody.mass == 1)
+		{
+			anim.SetBool("ShortDandelionBool", true);
+		}
+		else if (rbody.mass == 2)
+		{
+			anim.SetBool("LongDandelionBool", true);
+		}
 	}
 
 	public void OnDetached(GameObject dandylion)
@@ -852,6 +862,15 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		interactable = null;
 		transform.parent = null;
 		rbody.gravityScale = 1;
+
+		if (rbody.mass == 1)
+		{
+			anim.SetBool("ShortDandelionBool", false);
+		}
+		else if (rbody.mass == 2)
+		{
+			anim.SetBool("LongDandelionBool", false);
+		}
 	}
 
 	public float GetWeight()
