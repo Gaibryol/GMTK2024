@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		orientation = Constants.Player.Orientations.Flat;
 
 		boneTransforms = skin.boneTransforms;
+        Physics2D.queriesHitTriggers = false;
     }
 
     private void LateUpdate()
@@ -357,8 +358,8 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			tailDirection = transform.TransformDirection(transform.localScale.y > 0 ? Vector2.down : Vector2.up);
 			bodyDirection = transform.TransformDirection(Vector2.right);
 		}
-
-		RaycastHit2D headHit = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, headDirection, Constants.Player.BoneRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
+        
+        RaycastHit2D headHit = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, headDirection, Constants.Player.BoneRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D tailHit = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, tailDirection, Constants.Player.BoneRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D bodyHit = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, bodyDirection, Constants.Player.BoneDownRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 
