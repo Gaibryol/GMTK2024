@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		orientation = Constants.Player.Orientations.Flat;
 
 		boneTransforms = skin.boneTransforms;
-        Physics2D.queriesHitTriggers = false;
+		//Physics2D.queriesHitTriggers = false
     }
 
     private void LateUpdate()
@@ -122,6 +122,42 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		RaycastHit2D bottomHit = Physics2D.Raycast(transform.position, Vector2.down, Constants.Player.RaycastDistance.y, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D bottomRightHit = Physics2D.Raycast(transform.position, new Vector2(1f, -1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D bottomLeftHit = Physics2D.Raycast(transform.position, new Vector2(-1f, -1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
+
+		if (rightHit.collider != null)
+		{
+			if (rightHit.collider.isTrigger == true)
+			{
+				rightHit = new RaycastHit2D();
+			}
+		}
+		if (leftHit.collider != null)
+		{
+			if (leftHit.collider.isTrigger == true)
+			{
+				leftHit = new RaycastHit2D();
+			}
+		}
+		if (bottomHit.collider != null)
+		{
+			if (bottomHit.collider.isTrigger == true)
+			{
+				bottomHit = new RaycastHit2D();
+			}
+		}
+		if (bottomRightHit.collider != null)
+		{
+			if (bottomRightHit.collider.isTrigger == true)
+			{
+				bottomRightHit = new RaycastHit2D();
+			}
+		}
+		if (bottomLeftHit.collider != null)
+		{
+			if (bottomLeftHit.collider.isTrigger == true)
+			{
+				bottomLeftHit = new RaycastHit2D();
+			}
+		}
 
 		if (rightHit.collider != null && leftHit.collider == null && bottomHit.collider == null)
 		{
@@ -371,14 +407,36 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		RaycastHit2D tailHit = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, tailDirection, Constants.Player.BoneRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D bodyHit = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, bodyDirection, Constants.Player.BoneDownRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 
-		Debug.DrawRay(transform.position, headDirection, Color.red, 5f);
-		Debug.DrawRay(transform.position, tailDirection, Color.cyan, 5f);
-		Debug.DrawRay(transform.position, bodyDirection, Color.green, 5f);
+		//Debug.DrawRay(transform.position, headDirection, Color.red, 5f);
+		//Debug.DrawRay(transform.position, tailDirection, Color.cyan, 5f);
+		//Debug.DrawRay(transform.position, bodyDirection, Color.green, 5f);
 
 		//Debug.Log("Orientation: " + orientation);
 		//Debug.Log("Head: " + headHit.collider);
 		//Debug.Log("Body: " + bodyHit.collider);
 		//Debug.Log("Tail: " + tailHit.collider);
+
+		if (headHit.collider != null)
+		{
+			if (headHit.collider.isTrigger == true)
+			{
+				headHit = new RaycastHit2D();
+			}
+		}
+		if (tailHit.collider != null)
+		{
+			if (tailHit.collider.isTrigger == true)
+			{
+				tailHit = new RaycastHit2D();
+			}
+		}
+		if (bodyHit.collider != null)
+		{
+			if (bodyHit.collider.isTrigger == true)
+			{
+				bodyHit = new RaycastHit2D();
+			}
+		}
 
 		if (headHit.collider == null && tailHit.collider == null && bodyHit.collider == null)
 		{
