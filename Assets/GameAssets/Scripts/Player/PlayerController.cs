@@ -34,8 +34,6 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	[SerializeField] private SpriteSkin skin;
 	private Transform[] boneTransforms;
 
-	private bool facingRight;
-
 	private Constants.Player.Orientations orientation;
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
@@ -56,7 +54,6 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		lastInput = Constants.Player.Inputs.None;
 		dropping = false;
 		canMove = true;
-		facingRight = true;
 		orientation = Constants.Player.Orientations.Flat;
 
 		boneTransforms = skin.boneTransforms;
@@ -95,12 +92,15 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
             }
             skin.boneTransforms[i].localEulerAngles = new Vector3(boneTransform.eulerAngles.x, boneTransform.eulerAngles.y, zRot);
         }
-
-		HandleBones();
-		HandleScale();
 	}
 
-    void FixedUpdate()
+	private void Update()
+	{
+		HandleScale();
+		HandleBones();
+	}
+
+	void FixedUpdate()
     {
 		if (!canMove)
 		{
@@ -113,7 +113,6 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			return;
 		}
 
-		Transform headBone = boneTransforms[boneTransforms.Length - 1];
 		RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
 		RaycastHit2D bottomHit = Physics2D.Raycast(transform.position, Vector2.down, Constants.Player.RaycastDistance.y, 1 << LayerMask.NameToLayer("Wall"));
@@ -327,13 +326,14 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			return;
 		}
 
-		if (groundedColliders.Count <= 0)
-		{
-			// not touching any walls, revert to default
-			boneBlend = 0f;
-			boneTailBlend = 0f;
-			return;
-		}
+		//if (groundedColliders.Count <= 0)
+		//{
+		//	// not touching any walls, revert to default
+		//	boneBlend = 0f;
+		//	boneTailBlend = 0f;
+		//	Debug.Log("not touching any colliders");
+		//	return;
+		//}
 
 		Vector2 headDirection = Vector2.right;
 		Vector2 tailDirection = Vector2.left;
@@ -366,10 +366,10 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		Debug.DrawRay(transform.position, tailDirection, Color.cyan, 5f);
 		Debug.DrawRay(transform.position, bodyDirection, Color.green, 5f);
 
-		Debug.Log("Orientation: " + orientation);
-		Debug.Log("Head: " + headHit.collider);
-		Debug.Log("Body: " + bodyHit.collider);
-		Debug.Log("Tail: " + tailHit.collider);
+		//Debug.Log("Orientation: " + orientation);
+		//Debug.Log("Head: " + headHit.collider);
+		//Debug.Log("Body: " + bodyHit.collider);
+		//Debug.Log("Tail: " + tailHit.collider);
 
 		if (headHit.collider == null && tailHit.collider == null && bodyHit.collider == null)
 		{
@@ -386,7 +386,14 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 				float target = 0f;
 				if (orientation == Constants.Player.Orientations.Flat)
 				{
-					target = -0.5f;
+					if (lastInput == Constants.Player.Inputs.A)
+					{
+						target = 0.5f;
+					}
+					else if (lastInput == Constants.Player.Inputs.D)
+					{
+						target = 0f;
+					}
 				}
 				else if (orientation == Constants.Player.Orientations.WallOnLeft)
 				{
@@ -439,7 +446,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 					{
 						if (transform.localScale.x < 0)
 						{
-							target = -0.5f;
+							target = 0f;
 						}
 						else if (transform.localScale.x > 0)
 						{
@@ -461,13 +468,29 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 						}
 						else if (transform.localScale.x > 0)
 						{
-							target = -0.5f;
+							if (boneTailBlend == 0f && boneBlend == 0f)
+							{
+								// Was moving horizontally
+								target = 0f;
+							}
+
+							ContactPoint2D[] contacts = new ContactPoint2D[1];
+							coll.GetContacts(contacts);
+
+							if (contacts[0].point.x < transform.position.x)
+							{
+								target = -0.5f;
+							}
+							else if (contacts[0].point.x > transform.position.x)
+							{
+								target = 0f;
+							}
 						}
 					}
 				}
 				else if (orientation == Constants.Player.Orientations.WallOnLeft)
 				{
-					target = -1f;
+					target = -0.5f;
 				}
 				else if (orientation == Constants.Player.Orientations.WallOnRight)
 				{
@@ -568,12 +591,15 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 					}
 					else if (lastInput == Constants.Player.Inputs.D)
 					{
-						target = 0f;
+						if (boneBlend == 0)
+						{
+							target = -0.5f;
+						}
 					}
 				}
 				else if (orientation == Constants.Player.Orientations.WallOnLeft)
 				{
-					target = 1f;
+					target = 0f;
 				}
 				else if (orientation == Constants.Player.Orientations.WallOnRight)
 				{
@@ -615,7 +641,14 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	{
 		if (dropping)
 		{
-			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), Mathf.Abs(transform.localScale.z));
+			if (lastInput == Constants.Player.Inputs.A)
+			{
+				transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), Mathf.Abs(transform.localScale.z));
+			}
+			if (lastInput == Constants.Player.Inputs.D)
+			{
+				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), Mathf.Abs(transform.localScale.z));
+			}
 			return;
 		}
 
@@ -836,10 +869,4 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			groundedColliders.Remove(collision.transform.transform);
 		}
 	}
-
-	//private void OnDrawGizmos()
-	//{
-	//	Gizmos.color = Color.red;
-	//	Gizmos.DrawWireSphere(transform.position, Constants.Player.CirclecastRadius);
-	//}
 }
