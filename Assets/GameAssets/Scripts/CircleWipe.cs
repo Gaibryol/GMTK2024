@@ -6,8 +6,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static StarEvents;
-using static UnityEditor.Experimental.GraphView.Port;
 
 public class CircleWipe : MonoBehaviour
 {
