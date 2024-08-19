@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	private Rigidbody2D rbody;
 	private Collider2D coll;
+	private Animator anim;
 	private Constants.Player.Inputs lastInput;
 
 	private bool dropping;
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
     {
 		rbody = GetComponent<Rigidbody2D>();
 		coll = GetComponent<Collider2D>();
+		anim = GetComponent<Animator>();
 		lastInput = Constants.Player.Inputs.None;
 		dropping = false;
 		canMove = true;
@@ -98,6 +100,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	{
 		HandleScale();
 		HandleBones();
+		HandleAnimations();
 	}
 
 	void FixedUpdate()
@@ -317,6 +320,11 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		}
 	}
 
+	private void HandleAnimations()
+	{
+		anim.SetFloat("Mass", rbody.mass);
+		anim.SetFloat("Velocity", Mathf.Abs(rbody.velocity.x) + Mathf.Abs(rbody.velocityY));
+	}
 	private void HandleBones()
 	{
 		if (dropping)
@@ -698,8 +706,6 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	public void OnDrop(InputAction.CallbackContext context)
 	{
-		Debug.Log("Drop");
-
 		if (interactable != null)
 		{
 			interactable.StopInteract();
@@ -718,6 +724,15 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		boneTailBlend = 0f;
 
 		transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), Mathf.Abs(transform.localScale.z));
+
+		if (rbody.mass == 1)
+		{
+			anim.SetTrigger("ShortDropTrigger");
+		}
+		else if (rbody.mass == 2)
+		{
+			anim.SetTrigger("LongDropTrigger");
+		}
 
 		yield return new WaitForSeconds(Constants.Player.DropDuration);
 
