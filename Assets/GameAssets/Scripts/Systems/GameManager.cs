@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
 
     private string currentSceneName;
 
+    private void Start()
+    {
+        eventBroker.Publish(this, new AudioEvents.PlayMusic(currentSceneName));
+    }
+
     private void OnEnable()
     {
         eventBroker.Subscribe<StarEvents.AddStar>(OnAddStar);
