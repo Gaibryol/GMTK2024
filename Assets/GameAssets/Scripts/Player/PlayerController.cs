@@ -361,7 +361,10 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	{
 		anim.SetFloat("Mass", rbody.mass);
 		anim.SetFloat("Velocity", Mathf.Abs(rbody.velocity.x) + Mathf.Abs(rbody.velocityY));
+		anim.SetBool("LongDroppingBool", dropping && rbody.mass > 1f);
+		anim.SetBool("ShortDroppingBool", dropping && rbody.mass == 1f);
 	}
+
 	private void HandleBones()
 	{
 		if (dropping)
@@ -770,11 +773,6 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			interactable.StopInteract();
 		}
 
-		StartCoroutine(DropCoroutine());
-	}
-
-	private IEnumerator DropCoroutine()
-	{
 		rbody.velocity = Vector2.zero;
 		rbody.gravityScale = 1f;
 		dropping = true;
@@ -792,10 +790,6 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		{
 			anim.SetTrigger("LongDropTrigger");
 		}
-
-		yield return new WaitForSeconds(Constants.Player.DropDuration);
-
-		dropping = false;
 	}
 
 	public void OnSplit(InputAction.CallbackContext context)
@@ -942,6 +936,8 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		{
 			groundedColliders.Add(collision.transform.transform);
 		}
+
+		dropping = false;
 	}
 
 	private void OnCollisionStay2D(Collision2D collision)

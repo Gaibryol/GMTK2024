@@ -8,7 +8,6 @@ public partial class Constants
 	{
 		public static readonly Vector2 RaycastDistance = new Vector2(0.515f, 0.515f);
 		public const float DiagonalRaycastDistance = 0.72831998462f;
-		public const float DropDuration = 0.5f;
 		public const float BoneRaycastDistance = 1.5f;
 		public const float BoneDownRaycastDistance = 1f;
 		public const float CirclecastRadius = 0.25f;
