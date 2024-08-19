@@ -1287,6 +1287,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3886274862412685620, guid: b8500c3c8274ccb43ac21c3b9ec678a6, type: 3}
+      propertyPath: onSprite
+      value: 
+      objectReference: {fileID: 5265993858739457166, guid: 3762a95ebd58430438965fc1ff8ebb2d, type: 3}
+    - target: {fileID: 3886274862412685620, guid: b8500c3c8274ccb43ac21c3b9ec678a6, type: 3}
+      propertyPath: offSprite
+      value: 
+      objectReference: {fileID: -9060639715580908698, guid: d9b2f9eeebd7a0243aadd324d738afde, type: 3}
+    - target: {fileID: 3886274862412685620, guid: b8500c3c8274ccb43ac21c3b9ec678a6, type: 3}
       propertyPath: buttonListener
       value: 
       objectReference: {fileID: 1355216535}
@@ -1294,6 +1302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5928886832455145281, guid: b8500c3c8274ccb43ac21c3b9ec678a6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -9060639715580908698, guid: d9b2f9eeebd7a0243aadd324d738afde, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1429,6 +1441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button Controlled Platform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7864810503710685405, guid: 1c9ea1931b04e914b8a16a5cde626399, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2912581437029680896, guid: 28acccf0dcc9d514784072c87bd6eb84, type: 3}
     - target: {fileID: 7864810503710685405, guid: 1c9ea1931b04e914b8a16a5cde626399, type: 3}
       propertyPath: m_Color.b
       value: 1
