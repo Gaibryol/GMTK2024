@@ -1,25 +1,16 @@
 fileFormatVersion: 2
-guid: 8a38177b21e28cf4ab5e1ea5247baba2
+guid: f8ec26b0b57770e49843e08d430857f4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -898851157384387070
-    second: Skin-grassy_area_0
+      213: -8768280739389198227
+    second: Skin-grassy_area (1)_0
   - first:
-      213: 7577271834551506217
-    second: Skin-grassy_area_1
+      213: -8522036100832157279
+    second: Skin-grassy_area (1)_1
   - first:
-      213: -6141978079009400392
-    second: Skin-grassy_area_2
-  - first:
-      213: -3367972748712699829
-    second: Skin-grassy_area_3
-  - first:
-      213: -6821126491892738371
-    second: Skin-grassy_area_4
-  - first:
-      213: -1078665942913007898
-    second: Skin-grassy_area_5
+      213: 9008624452883680014
+    second: Skin-grassy_area (1)_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -141,13 +132,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skin-grassy_area_0
+      name: Skin-grassy_area (1)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2213
-        width: 948
-        height: 787
+        y: 0
+        width: 2581
+        height: 2149
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,19 +146,40 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 206a72a72a3a683f0800000000000000
-      internalID: -898851157384387070
+      spriteID: d60bec5bf1fc05680800000000000000
+      internalID: -8768280739389198227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin-grassy_area_1
+      name: Skin-grassy_area (1)_1
       rect:
         serializedVersion: 2
-        x: 4382
+        x: 1260
+        y: 1966
+        width: 1112
+        height: 1034
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a128d66155abb980800000000000000
+      internalID: -8522036100832157279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skin-grassy_area (1)_2
+      rect:
+        serializedVersion: 2
+        x: 2685
         y: 0
-        width: 1618
+        width: 2315
         height: 3000
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -176,92 +188,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 925d3016690e72960800000000000000
-      internalID: 7577271834551506217
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skin-grassy_area_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1727
-        height: 2089
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b9986e8a7f43caa0800000000000000
-      internalID: -6141978079009400392
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skin-grassy_area_3
-      rect:
-        serializedVersion: 2
-        x: 1654
-        y: 589
-        width: 1092
-        height: 295
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b4898cb11ae8241d0800000000000000
-      internalID: -3367972748712699829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skin-grassy_area_4
-      rect:
-        serializedVersion: 2
-        x: 3278
-        y: 570
-        width: 1027
-        height: 251
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: db61ab2789d7651a0800000000000000
-      internalID: -6821126491892738371
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skin-grassy_area_5
-      rect:
-        serializedVersion: 2
-        x: 3206
-        y: 0
-        width: 1109
-        height: 183
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6eebb593a0fc701f0800000000000000
-      internalID: -1078665942913007898
+      spriteID: e0b870dc530150d70800000000000000
+      internalID: 9008624452883680014
       vertices: []
       indices: 
       edges: []
@@ -277,12 +205,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skin-grassy_area_0: -898851157384387070
-      Skin-grassy_area_1: 7577271834551506217
-      Skin-grassy_area_2: -6141978079009400392
-      Skin-grassy_area_3: -3367972748712699829
-      Skin-grassy_area_4: -6821126491892738371
-      Skin-grassy_area_5: -1078665942913007898
+      Skin-grassy_area (1)_0: -8768280739389198227
+      Skin-grassy_area (1)_1: -8522036100832157279
+      Skin-grassy_area (1)_2: 9008624452883680014
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

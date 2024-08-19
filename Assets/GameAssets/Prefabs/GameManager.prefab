@@ -63,10 +63,10 @@ MonoBehaviour:
   sfxSource: {fileID: 7381655078699381588}
   mainMenuTheme: {fileID: 0}
   theme1: {fileID: 8300000, guid: 9de0b4b4ba61754439f52d3effdac38c, type: 3}
-  theme2: {fileID: 8300000, guid: e34a64050ab2617409dbfc6b7b4336bf, type: 3}
-  theme3: {fileID: 0}
+  theme2: {fileID: 8300000, guid: 65e8ad06bdc9abd469489f86700f2e9d, type: 3}
+  theme3: {fileID: 8300000, guid: 1d3d887d0e7b3aa4f80bae9e8c4da81d, type: 3}
   theme4: {fileID: 8300000, guid: f9289765e4bd1ce45923355a94b668bd, type: 3}
-  theme5: {fileID: 0}
+  theme5: {fileID: 8300000, guid: ee4afbc22575fbd4b8b00ae0fd26a65f, type: 3}
   testSound: {fileID: 0}
   book: {fileID: 0}
   buttonClick: {fileID: 0}
