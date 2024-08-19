@@ -9,14 +9,12 @@ public class AudioSystem : MonoBehaviour
 	[SerializeField, Header("Sources")] private AudioSource musicSource;
 	[SerializeField] private AudioSource sfxSource;
 
-	[SerializeField, Header("Music")] private AudioClip song1;
-	[SerializeField] private AudioClip song1Cut;
-	[SerializeField] private AudioClip mainMenuTheme;
-	[SerializeField] private AudioClip song2;
-	[SerializeField] private AudioClip song3;
-	[SerializeField] private AudioClip song1Preview;
-	[SerializeField] private AudioClip song2Preview;
-	[SerializeField] private AudioClip song3Preview;
+	[SerializeField, Header("Music")] private AudioClip mainMenuTheme;
+	[SerializeField] private AudioClip theme1;
+	[SerializeField] private AudioClip theme2;
+	[SerializeField] private AudioClip theme3;
+	[SerializeField] private AudioClip theme4;
+	[SerializeField] private AudioClip theme5;
 
 	[SerializeField, Header("SFX")] private AudioClip testSound;
 	[SerializeField] private AudioClip book;
@@ -41,7 +39,11 @@ public class AudioSystem : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 
 		// Set up music and sfx dictionaries
-		//music.Add(Constants.Audio.Music.Song1, song1);
+		music.Add(Constants.Audio.Music.Level1Theme, theme1);
+		music.Add(Constants.Audio.Music.Level2Theme, theme2);
+		music.Add(Constants.Audio.Music.Level3Theme, theme3);
+		music.Add(Constants.Audio.Music.Level4Theme, theme4);
+		music.Add(Constants.Audio.Music.Level5Theme, theme5);
 
 		//sfx.Add(Constants.Audio.SFX.TestSound, testSound);
 	}
