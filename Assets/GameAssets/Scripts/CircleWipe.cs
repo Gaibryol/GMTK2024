@@ -20,6 +20,7 @@ public class CircleWipe : MonoBehaviour
 
     private bool active = false;
     private float fillAmount = 1f;
+    public float targetAlpha = 0.07f;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,7 @@ public class CircleWipe : MonoBehaviour
         if (!active) return;
         TrackTarget();
 
-        fillAmount = Mathf.MoveTowards(fillAmount, 0.07f, Time.deltaTime * 1f);
+        fillAmount = Mathf.MoveTowards(fillAmount, targetAlpha, Time.deltaTime * 1f);
         material.SetFloat(fillAmountID, fillAmount);
 
     }
@@ -54,6 +55,7 @@ public class CircleWipe : MonoBehaviour
         if (@event.Payload.Victory)
         {
             active = true;
+            targetAlpha = 0.07f;
         }
     }
 

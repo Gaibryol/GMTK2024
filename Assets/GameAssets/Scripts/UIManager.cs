@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
 	private List<GameObject> spawnedStars;
 
 	[SerializeField, Header("Ending")] private GameObject endPanel;
+	[SerializeField] CircleWipe circleWipe;
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
@@ -114,6 +115,7 @@ public class UIManager : MonoBehaviour
 	private IEnumerator EndingBeginCoroutine()
 	{
 		yield return new WaitForSeconds(5f);
+		circleWipe.targetAlpha = 1f;
 		endPanel.SetActive(true);
 		endingCoroutine = StartCoroutine(EndingCoroutine());
 	}

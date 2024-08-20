@@ -6,6 +6,7 @@ public class WeightDependentPlatform : MonoBehaviour
 {
     [SerializeField] private float maxWeight;
     private List<IWeighted> weighteds = new List<IWeighted>();
+    private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
     private bool broken = false;
     void Start()
@@ -25,6 +26,8 @@ public class WeightDependentPlatform : MonoBehaviour
 
     private void DestroyPlatform()
     {
+        eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.PlatformBreak));
+
         Destroy(gameObject);
     }
 

@@ -2429,6 +2429,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0286ce1b5a21d894b8ca16c5fd0edab9, type: 3}
+--- !u!114 &1293221571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4743641235139988691, guid: 0286ce1b5a21d894b8ca16c5fd0edab9, type: 3}
+  m_PrefabInstance: {fileID: 1293221570}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235738520e8468448b3d20b73489a63d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1301812718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2534,6 +2545,10 @@ PrefabInstance:
       propertyPath: numStars
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 425236323358353715, guid: 23ef490bb05a6d7498724fd02488dba3, type: 3}
+      propertyPath: circleWipe
+      value: 
+      objectReference: {fileID: 1293221571}
     - target: {fileID: 1032520190254791944, guid: 23ef490bb05a6d7498724fd02488dba3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
