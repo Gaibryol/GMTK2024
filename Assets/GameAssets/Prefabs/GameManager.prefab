@@ -72,7 +72,7 @@ MonoBehaviour:
   dandelion: {fileID: 8300000, guid: 53e6943758df9bb4286935fe8a995899, type: 3}
   invalid: {fileID: 8300000, guid: fe849c37e61287b489bbf19913ab003d, type: 3}
   mushroomJump: {fileID: 8300000, guid: 4b5c55c6e7284d34fbeb355e28e435df, type: 3}
-  platformDoorMove: {fileID: 8300000, guid: faba7ea6a0bbec34f9926252d3c9e513, type: 3}
+  platformDoorMove: {fileID: 8300000, guid: 63c0d73f0c3b5b14dabc658b2dddcc57, type: 3}
   UIClick: {fileID: 8300000, guid: b6e0e9b0736c5544090fcf1ed4493d6d, type: 3}
   WormFall: {fileID: 8300000, guid: d11444e1d2f74ee4bb257f8d8639c4f4, type: 3}
   WormJoin: {fileID: 8300000, guid: fe498c71f68be734883079c407b1763b, type: 3}
