@@ -15,8 +15,9 @@ public class AudioSystem : MonoBehaviour
 	[SerializeField] private AudioClip theme3;
 	[SerializeField] private AudioClip theme4;
 	[SerializeField] private AudioClip theme5;
+	[SerializeField] private AudioClip victory;
 
-	[SerializeField, Header("SFX")] private AudioClip buttonPress;
+    [SerializeField, Header("SFX")] private AudioClip buttonPress;
 	[SerializeField] private AudioClip dandelion;
 	[SerializeField] private AudioClip invalid;
 	[SerializeField] private AudioClip mushroomJump;
@@ -49,8 +50,9 @@ public class AudioSystem : MonoBehaviour
 		music.Add(Constants.Audio.Music.Level3Theme, theme3);
 		music.Add(Constants.Audio.Music.Level4Theme, theme4);
 		music.Add(Constants.Audio.Music.Level5Theme, theme5);
+		music.Add(Constants.Audio.Music.Victory, victory);
 
-		sfx.Add(Constants.Audio.SFX.ButtonPress, buttonPress);
+        sfx.Add(Constants.Audio.SFX.ButtonPress, buttonPress);
 		sfx.Add(Constants.Audio.SFX.Dandelion, dandelion);
 		sfx.Add(Constants.Audio.SFX.Invalid, invalid);
 		sfx.Add(Constants.Audio.SFX.MushroomJump, mushroomJump);

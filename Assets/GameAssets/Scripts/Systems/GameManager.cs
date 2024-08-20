@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelEnd(BrokerEvent<LevelEvents.EndLevel> @event)
     {
+        if (@event.Payload.Victory)
+        {
+            eventBroker.Publish(this, new AudioEvents.PlayTemporaryMusic(Constants.Audio.Music.Victory));
+        }
+
 		int highestStars = PlayerPrefs.GetInt(currentSceneName, 0);
 
 		if (starsCollected > highestStars)

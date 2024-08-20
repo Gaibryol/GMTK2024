@@ -56,6 +56,6 @@ Material:
     m_Floats:
     - _fillAmount: 1
     m_Colors:
-    - _offset: {r: 0.86408347, g: 0.123114385, b: 0, a: 0}
+    - _offset: {r: 0.74125, g: 0.14799991, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

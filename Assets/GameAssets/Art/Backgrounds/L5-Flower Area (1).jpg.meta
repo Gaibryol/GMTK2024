@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bbc3f5d0956731b428c11a425321521b
+guid: 87f9eaccbf64b974f8a86b96a2fff5c8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6753636200041382837
-    second: L5-Flower Area_0
+      213: 1059873933133526407
+    second: L5-Flower Area (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: L5-Flower Area_0
+      name: L5-Flower Area (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b4c705a88a34642a0800000000000000
-      internalID: -6753636200041382837
+      spriteID: 785be1b0abd65be00800000000000000
+      internalID: 1059873933133526407
       vertices: []
       indices: 
       edges: []
@@ -157,7 +157,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      L5-Flower Area_0: -6753636200041382837
+      L5-Flower Area (1)_0: 1059873933133526407
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
