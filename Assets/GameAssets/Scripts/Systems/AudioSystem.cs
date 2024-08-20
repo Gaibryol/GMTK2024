@@ -36,8 +36,6 @@ public class AudioSystem : MonoBehaviour
 
 	private void Awake()
 	{
-		DontDestroyOnLoad(gameObject);
-
 		// Set up music and sfx dictionaries
 		music.Add(Constants.Audio.Music.Level1Theme, theme1);
 		music.Add(Constants.Audio.Music.Level2Theme, theme2);
