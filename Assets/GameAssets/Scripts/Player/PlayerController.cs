@@ -100,13 +100,20 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	private void Update()
 	{
-		HandleScale();
-		HandleBones();
+        if (dancingSprite.enabled)
+        {
+            dancingSprite.transform.localScale = Vector3.one;
+        } else
+		{
+            HandleScale();
+        }
+        HandleBones();
 		HandleAnimations();
 	}
 
 	void FixedUpdate()
     {
+		
 		if (!canMove)
 		{
 			return;
@@ -811,8 +818,14 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
         boneBlend = 0f;
 		boneTailBlend = 0f;
 
-		transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), Mathf.Abs(transform.localScale.z));
-	}
+        if (dancingSprite.enabled)
+        {
+            dancingSprite.transform.localScale = Vector3.one;
+        } else
+		{
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), Mathf.Abs(transform.localScale.z));
+        }
+    }
 
 	public void OnSplit(InputAction.CallbackContext context)
 	{
