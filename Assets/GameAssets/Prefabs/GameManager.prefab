@@ -77,7 +77,7 @@ MonoBehaviour:
   WormFall: {fileID: 8300000, guid: d11444e1d2f74ee4bb257f8d8639c4f4, type: 3}
   WormJoin: {fileID: 8300000, guid: fe498c71f68be734883079c407b1763b, type: 3}
   WormSplit: {fileID: 8300000, guid: 5529fb5e9e211d340a3fb2ab70044750, type: 3}
-  Star: {fileID: 8300000, guid: 9b2f66ccd9eb96b48aca1c605655cb4d, type: 3}
+  Star: {fileID: 8300000, guid: 8df6eaec9a189e542b387984cab225d5, type: 3}
 --- !u!1 &5648191220290578177
 GameObject:
   m_ObjectHideFlags: 0
