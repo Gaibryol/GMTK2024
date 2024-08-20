@@ -5,6 +5,7 @@ using UnityEngine;
 public class VictoryFlower : MonoBehaviour
 {
     [SerializeField] private string nextLevel;
+	[SerializeField] private int levelNumber;
 
     private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
@@ -15,6 +16,7 @@ public class VictoryFlower : MonoBehaviour
         if (activated) { return; }
 
         activated = true;
+        PlayerPrefs.SetInt("LevelReached", levelNumber + 1);
         eventBroker.Publish(this, new LevelEvents.EndLevel(nextLevel, true, 5f));
         return;
     }
