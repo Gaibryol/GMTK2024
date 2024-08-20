@@ -41,8 +41,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
 	private List<Transform> groundedColliders;
-    private EventBrokerComponent eventBrokerComponent = new EventBrokerComponent();
-
+	[SerializeField] private SpriteRenderer dancingSprite;
     public float forceMultiplier { get { return rbody.mass == 1 ? 0.5f : 1f; } }
 
 	private void Awake()
@@ -807,7 +806,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		rbody.velocity = Vector2.zero;
 		rbody.gravityScale = 1f;
 		dropping = true;
-        eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.WormFall));
+        eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.WormFall));
 
         boneBlend = 0f;
 		boneTailBlend = 0f;
@@ -844,7 +843,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 				obj.GetComponent<Collider2D>().enabled = true;
 			}
 
-            eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.WormSplit));
+            eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.WormSplit));
 
         }
 		else
@@ -902,7 +901,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		{
 			obj.GetComponent<Collider2D>().enabled = false;
 		}
-        eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.WormJoin));
+        eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.WormJoin));
 
     }
 
@@ -940,7 +939,8 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
     private void EndLevelHandler(BrokerEvent<LevelEvents.EndLevel> @event)
     {
-		anim.SetBool("LongVictoryDance", true);
+		GetComponent<SpriteRenderer>().enabled = false;
+		dancingSprite.enabled = true;
 		canMove = false;
 		rbody.velocity = Vector2.zero;
     }

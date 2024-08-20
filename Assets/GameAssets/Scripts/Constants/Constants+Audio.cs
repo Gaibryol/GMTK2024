@@ -22,9 +22,11 @@ public partial class Constants
 			public const string Level3Theme = "Level3";
 			public const string Level4Theme = "Level4";
 			public const string Level5Theme = "Level5";
+			public const string Victory = "Victory";
+
         }
 
-		public class SFX
+        public class SFX
 		{
             public const string ButtonPress = "ButtonPress";
             public const string Dandelion = "Dandelion";
