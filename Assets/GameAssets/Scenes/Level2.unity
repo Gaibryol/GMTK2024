@@ -584,7 +584,7 @@ PolygonCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7418b370bef1ab246b0f350bf109804e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -620,10 +620,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.6595564, y: -1.4735718}
-      - {x: 0.415977, y: -0.6800585}
-      - {x: -0.37653637, y: 0.10915947}
-      - {x: -0.63242817, y: 0.7995701}
+    - - {x: 0.6595564, y: -1.4735718}
+      - {x: -0.084023, y: -0.6800585}
+      - {x: -0.87653637, y: 0.10915947}
+      - {x: -0.63242817, y: 1.2995701}
       - {x: -0.18697, y: 2.4667797}
       - {x: 1.5563266, y: 4.1599445}
       - {x: 4.8336773, y: 7.403279}
@@ -915,7 +915,7 @@ Transform:
   m_GameObject: {fileID: 923368309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -14, z: 0}
+  m_LocalPosition: {x: 1.5, y: -13.9, z: 0}
   m_LocalScale: {x: 13, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
