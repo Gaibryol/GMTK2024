@@ -41,11 +41,13 @@ public class MainMenuManager : MonoBehaviour
 				levelString = Constants.Scenes.Level5;
 				break;
 		}
+		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
 		eventBroker.Publish(this, new LevelEvents.EndLevel(levelString, true));
 	}
 	
 	public void OpenLevelSelectPanel()
 	{
+		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
 		int levelReached = PlayerPrefs.GetInt("LevelReached", 1);
 
 		level1Button.gameObject.SetActive(levelReached >= 1);
@@ -59,16 +61,19 @@ public class MainMenuManager : MonoBehaviour
 
 	public void CloseLevelSelectPanel()
 	{
+		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
 		levelSelectPanel.SetActive(false);
 	}
 
     public void OpenCreditsPanel()
 	{
+		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
 		creditsPanel.SetActive(true);
 	}
 
 	public void CloseCreditsPanel()
 	{
+		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
 		creditsPanel.SetActive(false);
 	}
 }

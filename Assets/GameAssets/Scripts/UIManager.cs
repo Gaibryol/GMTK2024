@@ -30,13 +30,11 @@ public class UIManager : MonoBehaviour
 		{
 			uiBackground.sprite = soundOnImage;
 		}
-		Debug.Log("audio muted: " + audioMuted);
-		Debug.Log("music: " + PlayerPrefs.GetFloat(Constants.Audio.MusicVolumePP));
-		Debug.Log("sfx: " + PlayerPrefs.GetFloat(Constants.Audio.SFXVolumePP));
     }
 
 	private void OnHomeButtonPressed()
 	{
+		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
 		SceneManager.LoadScene("MainMenu");
 	}
 
@@ -45,6 +43,7 @@ public class UIManager : MonoBehaviour
 		if (audioMuted)
 		{
 			// Audio was muted, unmute
+			eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
 			eventBroker.Publish(this, new AudioEvents.ChangeMusicVolume(Constants.Audio.DefaultMusicVolume));
 			eventBroker.Publish(this, new AudioEvents.ChangeSFXVolume(Constants.Audio.DefaultSFXVolume));
 			audioMuted = false;
@@ -62,6 +61,7 @@ public class UIManager : MonoBehaviour
 
 	private void OnRestartButtonPressed()
 	{
+		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
 		eventBroker.Publish(this, new LevelEvents.EndLevel("", false));
 	}
 
