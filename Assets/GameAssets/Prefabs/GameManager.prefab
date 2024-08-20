@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 4075366233515942886}
   sfxSource: {fileID: 7381655078699381588}
-  mainMenu: {fileID: 8300000, guid: 9de0b4b4ba61754439f52d3effdac38c, type: 3}
+  mainMenu: {fileID: 8300000, guid: e39b4ef20666ab44eac50b02d9cedb79, type: 3}
   theme1: {fileID: 8300000, guid: 9de0b4b4ba61754439f52d3effdac38c, type: 3}
   theme2: {fileID: 8300000, guid: 65e8ad06bdc9abd469489f86700f2e9d, type: 3}
   theme3: {fileID: 8300000, guid: 1d3d887d0e7b3aa4f80bae9e8c4da81d, type: 3}
@@ -76,6 +76,7 @@ MonoBehaviour:
   WormFall: {fileID: 8300000, guid: d11444e1d2f74ee4bb257f8d8639c4f4, type: 3}
   WormJoin: {fileID: 8300000, guid: fe498c71f68be734883079c407b1763b, type: 3}
   WormSplit: {fileID: 8300000, guid: 5529fb5e9e211d340a3fb2ab70044750, type: 3}
+  Star: {fileID: 8300000, guid: 9b2f66ccd9eb96b48aca1c605655cb4d, type: 3}
 --- !u!1 &5648191220290578177
 GameObject:
   m_ObjectHideFlags: 0

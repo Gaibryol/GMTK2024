@@ -1,25 +1,49 @@
 fileFormatVersion: 2
-guid: 8a38177b21e28cf4ab5e1ea5247baba2
+guid: 6ffa9d3d3deb07842a2d9de127461e8a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -898851157384387070
-    second: Skin-grassy_area_0
+      213: 5181561895380879040
+    second: Skin-shoe_area (1)_0
   - first:
-      213: 7577271834551506217
-    second: Skin-grassy_area_1
+      213: -6465816860510920619
+    second: Skin-shoe_area (1)_1
   - first:
-      213: -6141978079009400392
-    second: Skin-grassy_area_2
+      213: -4124191144209755237
+    second: Skin-shoe_area (1)_2
   - first:
-      213: -3367972748712699829
-    second: Skin-grassy_area_3
+      213: -7716559941891447041
+    second: Skin-shoe_area (1)_3
   - first:
-      213: -6821126491892738371
-    second: Skin-grassy_area_4
+      213: 1723422044893722573
+    second: Skin-shoe_area (1)_4
   - first:
-      213: -1078665942913007898
-    second: Skin-grassy_area_5
+      213: 2694309065262168832
+    second: Skin-shoe_area (1)_5
+  - first:
+      213: 7600378213033315768
+    second: Skin-shoe_area (1)_6
+  - first:
+      213: 49874104329598189
+    second: Skin-shoe_area (1)_7
+  - first:
+      213: -3802149167754582435
+    second: Skin-shoe_area (1)_8
+  - first:
+      213: 9145763786210484309
+    second: Skin-shoe_area (1)_9
+  - first:
+      213: -5050838774538226680
+    second: Skin-shoe_area (1)_10
+  - first:
+      213: 7618238424052660321
+    second: Skin-shoe_area (1)_11
+  - first:
+      213: 2526065863443190913
+    second: Skin-shoe_area (1)_12
+  - first:
+      213: -7108249183275928369
+    second: Skin-shoe_area (1)_13
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -141,7 +165,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skin-grassy_area_0
+      name: Skin-shoe_area (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 206a72a72a3a683f0800000000000000
-      internalID: -898851157384387070
+      spriteID: 0c680eb371b98e740800000000000000
+      internalID: 5181561895380879040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin-grassy_area_1
+      name: Skin-shoe_area (1)_1
       rect:
         serializedVersion: 2
         x: 4382
@@ -176,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 925d3016690e72960800000000000000
-      internalID: 7577271834551506217
+      spriteID: 550e38e92ddc446a0800000000000000
+      internalID: -6465816860510920619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin-grassy_area_2
+      name: Skin-shoe_area (1)_2
       rect:
         serializedVersion: 2
         x: 0
@@ -197,14 +221,161 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b9986e8a7f43caa0800000000000000
-      internalID: -6141978079009400392
+      spriteID: b93d097510ee3c6c0800000000000000
+      internalID: -4124191144209755237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin-grassy_area_3
+      name: Skin-shoe_area (1)_3
+      rect:
+        serializedVersion: 2
+        x: 2610
+        y: 1441
+        width: 252
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff62d8fed9549e490800000000000000
+      internalID: -7716559941891447041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skin-shoe_area (1)_4
+      rect:
+        serializedVersion: 2
+        x: 2884
+        y: 1523
+        width: 144
+        height: 239
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc7b7fff733dae710800000000000000
+      internalID: 1723422044893722573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skin-shoe_area (1)_5
+      rect:
+        serializedVersion: 2
+        x: 2990
+        y: 1584
+        width: 483
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00bf01ed1db146520800000000000000
+      internalID: 2694309065262168832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skin-shoe_area (1)_6
+      rect:
+        serializedVersion: 2
+        x: 2471
+        y: 1500
+        width: 91
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bd087a57b7f97960800000000000000
+      internalID: 7600378213033315768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skin-shoe_area (1)_7
+      rect:
+        serializedVersion: 2
+        x: 2440
+        y: 1294
+        width: 163
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de47e00db3031b000800000000000000
+      internalID: 49874104329598189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skin-shoe_area (1)_8
+      rect:
+        serializedVersion: 2
+        x: 2617
+        y: 1135
+        width: 240
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d56e0f00a7d0c3bc0800000000000000
+      internalID: -3802149167754582435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skin-shoe_area (1)_9
+      rect:
+        serializedVersion: 2
+        x: 2884
+        y: 979
+        width: 126
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55025bc05b74cee70800000000000000
+      internalID: 9145763786210484309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skin-shoe_area (1)_10
       rect:
         serializedVersion: 2
         x: 1654
@@ -218,14 +389,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b4898cb11ae8241d0800000000000000
-      internalID: -3367972748712699829
+      spriteID: 80431e125e0d7e9b0800000000000000
+      internalID: -5050838774538226680
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin-grassy_area_4
+      name: Skin-shoe_area (1)_11
+      rect:
+        serializedVersion: 2
+        x: 2996
+        y: 820
+        width: 218
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 168f3e7cb7b69b960800000000000000
+      internalID: 7618238424052660321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skin-shoe_area (1)_12
       rect:
         serializedVersion: 2
         x: 3278
@@ -239,14 +431,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: db61ab2789d7651a0800000000000000
-      internalID: -6821126491892738371
+      spriteID: 18495c5e4836e0320800000000000000
+      internalID: 2526065863443190913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin-grassy_area_5
+      name: Skin-shoe_area (1)_13
       rect:
         serializedVersion: 2
         x: 3206
@@ -260,8 +452,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6eebb593a0fc701f0800000000000000
-      internalID: -1078665942913007898
+      spriteID: fc4b0e7670d6a5d90800000000000000
+      internalID: -7108249183275928369
       vertices: []
       indices: 
       edges: []
@@ -277,12 +469,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skin-grassy_area_0: -898851157384387070
-      Skin-grassy_area_1: 7577271834551506217
-      Skin-grassy_area_2: -6141978079009400392
-      Skin-grassy_area_3: -3367972748712699829
-      Skin-grassy_area_4: -6821126491892738371
-      Skin-grassy_area_5: -1078665942913007898
+      Skin-shoe_area (1)_0: 5181561895380879040
+      Skin-shoe_area (1)_1: -6465816860510920619
+      Skin-shoe_area (1)_10: -5050838774538226680
+      Skin-shoe_area (1)_11: 7618238424052660321
+      Skin-shoe_area (1)_12: 2526065863443190913
+      Skin-shoe_area (1)_13: -7108249183275928369
+      Skin-shoe_area (1)_2: -4124191144209755237
+      Skin-shoe_area (1)_3: -7716559941891447041
+      Skin-shoe_area (1)_4: 1723422044893722573
+      Skin-shoe_area (1)_5: 2694309065262168832
+      Skin-shoe_area (1)_6: 7600378213033315768
+      Skin-shoe_area (1)_7: 49874104329598189
+      Skin-shoe_area (1)_8: -3802149167754582435
+      Skin-shoe_area (1)_9: 9145763786210484309
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Star : MonoBehaviour
 {
-    private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
-
+    private readonly EventBrokerComponent eventBrokerComponent = new EventBrokerComponent();
+    private bool triggered = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        eventBroker.Publish(this, new StarEvents.AddStar());
+        if (triggered) return;
+        triggered = true;
+        eventBrokerComponent.Publish(this, new StarEvents.AddStar());
+        eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.Star));
         Destroy(gameObject, .1f);
     }
 }

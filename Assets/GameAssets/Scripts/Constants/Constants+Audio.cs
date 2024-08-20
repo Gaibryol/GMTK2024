@@ -35,6 +35,7 @@ public partial class Constants
             public const string WormFall = "WormFall";
             public const string WormJoin = "WormJoin";
             public const string WormSplit = "WormSplit";
+            public const string Star = "Star";
 
         }
     }

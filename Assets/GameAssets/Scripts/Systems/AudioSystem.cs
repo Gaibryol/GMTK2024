@@ -25,8 +25,9 @@ public class AudioSystem : MonoBehaviour
 	[SerializeField] private AudioClip WormFall;
 	[SerializeField] private AudioClip WormJoin;
 	[SerializeField] private AudioClip WormSplit;
+	[SerializeField] private AudioClip Star;
 
-	private float musicVolume;
+    private float musicVolume;
 	private float sfxVolume;
 
 	private AudioClip oldMusic;
@@ -58,6 +59,7 @@ public class AudioSystem : MonoBehaviour
 		sfx.Add(Constants.Audio.SFX.WormFall, WormFall);
 		sfx.Add(Constants.Audio.SFX.WormJoin, WormJoin);
 		sfx.Add(Constants.Audio.SFX.WormSplit, WormSplit);
+		sfx.Add(Constants.Audio.SFX.Star, Star);
     }
 
 	private void ChangeMusicVolumeHandler(BrokerEvent<AudioEvents.ChangeMusicVolume> inEvent)

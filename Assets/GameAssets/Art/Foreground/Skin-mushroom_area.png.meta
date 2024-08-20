@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: de5e19762ef89f742b6dddf370661229
+guid: f49c8baf0a4022443a16717a2859c1b9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2162199072980006175
-    second: Skin-mushroom_area_0
+      213: -1359609039368017348
+    second: Skin-mushroom_area (1)_0
   - first:
-      213: -1410476611125116987
-    second: Skin-mushroom_area_1
+      213: 8938306478327919550
+    second: Skin-mushroom_area (1)_1
   - first:
-      213: -3044300824823671637
-    second: Skin-mushroom_area_2
+      213: -8722022575784557056
+    second: Skin-mushroom_area (1)_2
   - first:
-      213: 562174085128217147
-    second: Skin-mushroom_area_3
+      213: -1149082642147784456
+    second: Skin-mushroom_area (1)_3
   - first:
-      213: -2462677038065408669
-    second: Skin-mushroom_area_4
+      213: 2391142581217085408
+    second: Skin-mushroom_area (1)_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -138,7 +138,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skin-mushroom_area_0
+      name: Skin-mushroom_area (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ea095126635ef1e0800000000000000
-      internalID: -2162199072980006175
+      spriteID: c3a2f0f38c2b12de0800000000000000
+      internalID: -1359609039368017348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin-mushroom_area_1
+      name: Skin-mushroom_area (1)_1
       rect:
         serializedVersion: 2
         x: 3405
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5cff3e5cefafc6ce0800000000000000
-      internalID: -1410476611125116987
+      spriteID: eb3fe46826e3b0c70800000000000000
+      internalID: 8938306478327919550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin-mushroom_area_2
+      name: Skin-mushroom_area (1)_2
       rect:
         serializedVersion: 2
         x: 3862
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ba4d4fa778870c5d0800000000000000
-      internalID: -3044300824823671637
+      spriteID: 0068c67bda625f680800000000000000
+      internalID: -8722022575784557056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin-mushroom_area_3
+      name: Skin-mushroom_area (1)_3
       rect:
         serializedVersion: 2
         x: 3840
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b326ff51a5e3dc700800000000000000
-      internalID: 562174085128217147
+      spriteID: 8f8c631dc63ad00f0800000000000000
+      internalID: -1149082642147784456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin-mushroom_area_4
+      name: Skin-mushroom_area (1)_4
       rect:
         serializedVersion: 2
         x: 4592
@@ -236,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 365a99d1840d2ddd0800000000000000
-      internalID: -2462677038065408669
+      spriteID: 0e741c0428b0f2120800000000000000
+      internalID: 2391142581217085408
       vertices: []
       indices: 
       edges: []
@@ -253,11 +253,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skin-mushroom_area_0: -2162199072980006175
-      Skin-mushroom_area_1: -1410476611125116987
-      Skin-mushroom_area_2: -3044300824823671637
-      Skin-mushroom_area_3: 562174085128217147
-      Skin-mushroom_area_4: -2462677038065408669
+      Skin-mushroom_area (1)_0: -1359609039368017348
+      Skin-mushroom_area (1)_1: 8938306478327919550
+      Skin-mushroom_area (1)_2: -8722022575784557056
+      Skin-mushroom_area (1)_3: -1149082642147784456
+      Skin-mushroom_area (1)_4: 2391142581217085408
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
