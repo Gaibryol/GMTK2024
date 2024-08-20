@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8678929df5f319449a6e7508a35f4b9a
+guid: 8219f6acde1d3cd44b460be2ec15b778
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5316177341159318154
-    second: L2-Shoe Area_0
+      213: -5387770572713513170
+    second: L3-Grassy Area (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: L2-Shoe Area_0
+      name: L3-Grassy Area (1)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 5900
-        height: 3200
+        width: 4200
+        height: 2700
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67dd731efd42936b0800000000000000
-      internalID: -5316177341159318154
+      spriteID: e2fab12b53bca35b0800000000000000
+      internalID: -5387770572713513170
       vertices: []
       indices: 
       edges: []
@@ -149,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -157,7 +157,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      L2-Shoe Area_0: -5316177341159318154
+      L3-Grassy Area (1)_0: -5387770572713513170
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d936054c862a0e84ab82249dd0f4180b
+guid: 845b3663d1ae6e7448299c9ebb7db5e3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 198865451592475041
-    second: L1-Mushroom Area_0
+      213: 7696102593972329760
+    second: L4-Muddy Area (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: L1-Mushroom Area_0
+      name: L4-Muddy Area (1)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 4400
-        height: 2600
+        height: 2200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1a16448131382c200800000000000000
-      internalID: 198865451592475041
+      spriteID: 02ddea4988c0eca60800000000000000
+      internalID: 7696102593972329760
       vertices: []
       indices: 
       edges: []
@@ -149,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -157,7 +157,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      L1-Mushroom Area_0: 198865451592475041
+      L4-Muddy Area (1)_0: 7696102593972329760
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
