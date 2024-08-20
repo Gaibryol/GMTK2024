@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cd15494d7c3c3654cbe40db5a38a89ba
+guid: 6b2f3653a9c4b1e4c843e239bf247857
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8813849096389797633
-    second: "level select \u2013 1_0"
+      213: 9206368896891395856
+    second: CreditsFinal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,7 +152,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "level select \u2013 1_0"
+      name: CreditsFinal_0
       rect:
         serializedVersion: 2
         x: 0
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ff8d9c1d1faeea580800000000000000
-      internalID: -8813849096389797633
+      spriteID: 01f9a6afbb793cf70800000000000000
+      internalID: 9206368896891395856
       vertices: []
       indices: 
       edges: []
@@ -183,7 +183,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "level select \u2013 1_0": -8813849096389797633
+      CreditsFinal_0: 9206368896891395856
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
