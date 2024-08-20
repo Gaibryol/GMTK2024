@@ -43,7 +43,10 @@ public class BouncingPlatform : MonoBehaviour
 
         rbody.AddForceY(upwardsForce * bounceable.forceMultiplier * rbody.mass, ForceMode2D.Impulse);
 
-		collision.gameObject.GetComponent<Animator>().SetTrigger("LongJumpTrigger");
+		if (collision.gameObject.GetComponent<Animator>() != null)
+		{
+			collision.gameObject.GetComponent<Animator>().SetTrigger("LongJumpTrigger");
+		}
     }
 
     private void OnTriggerStay2D(Collider2D collision)

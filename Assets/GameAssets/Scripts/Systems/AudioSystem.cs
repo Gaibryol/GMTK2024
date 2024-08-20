@@ -9,7 +9,7 @@ public class AudioSystem : MonoBehaviour
 	[SerializeField, Header("Sources")] private AudioSource musicSource;
 	[SerializeField] private AudioSource sfxSource;
 
-	[SerializeField, Header("Music")] private AudioClip mainMenuTheme;
+	[SerializeField, Header("Music")] private AudioClip mainMenu;
 	[SerializeField] private AudioClip theme1;
 	[SerializeField] private AudioClip theme2;
 	[SerializeField] private AudioClip theme3;
@@ -42,6 +42,7 @@ public class AudioSystem : MonoBehaviour
 	private void Awake()
 	{
 		// Set up music and sfx dictionaries
+		music.Add(Constants.Audio.Music.MainMenuTheme, mainMenu);
 		music.Add(Constants.Audio.Music.Level1Theme, theme1);
 		music.Add(Constants.Audio.Music.Level2Theme, theme2);
 		music.Add(Constants.Audio.Music.Level3Theme, theme3);

@@ -22,6 +22,17 @@ public class UIManager : MonoBehaviour
     {
 		// Check if music volume is set to 0
 		audioMuted = PlayerPrefs.GetFloat(Constants.Audio.MusicVolumePP, Constants.Audio.DefaultMusicVolume) == 0f && PlayerPrefs.GetFloat(Constants.Audio.SFXVolumePP, Constants.Audio.DefaultSFXVolume) == 0f;
+		if (audioMuted)
+		{
+			uiBackground.sprite = soundOffImage;
+		}
+		else
+		{
+			uiBackground.sprite = soundOnImage;
+		}
+		Debug.Log("audio muted: " + audioMuted);
+		Debug.Log("music: " + PlayerPrefs.GetFloat(Constants.Audio.MusicVolumePP));
+		Debug.Log("sfx: " + PlayerPrefs.GetFloat(Constants.Audio.SFXVolumePP));
     }
 
 	private void OnHomeButtonPressed()
@@ -34,8 +45,8 @@ public class UIManager : MonoBehaviour
 		if (audioMuted)
 		{
 			// Audio was muted, unmute
-			eventBroker.Publish(this, new AudioEvents.ChangeMusicVolume(PlayerPrefs.GetFloat(Constants.Audio.MusicVolumePP)));
-			eventBroker.Publish(this, new AudioEvents.ChangeSFXVolume(PlayerPrefs.GetFloat(Constants.Audio.MusicVolumePP)));
+			eventBroker.Publish(this, new AudioEvents.ChangeMusicVolume(Constants.Audio.DefaultMusicVolume));
+			eventBroker.Publish(this, new AudioEvents.ChangeSFXVolume(Constants.Audio.DefaultSFXVolume));
 			audioMuted = false;
 			uiBackground.sprite = soundOnImage;
 		}

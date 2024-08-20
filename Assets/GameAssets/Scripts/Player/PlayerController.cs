@@ -821,7 +821,15 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		{
 			anim.SetTrigger("LongSplitTrigger");
 
-			Instantiate(blobPrefab, transform.position - new Vector3(1f, 0), Quaternion.identity);
+			if (transform.localScale.x > 0)
+			{
+				Instantiate(blobPrefab, transform.position - new Vector3(1f, 0), Quaternion.identity);
+			}
+			else
+			{
+				Instantiate(blobPrefab, transform.position + new Vector3(1f, 0), Quaternion.identity);
+			}
+			
 			rbody.mass = 1f;
 
 			GameObject[] longObjects = GameObject.FindGameObjectsWithTag("Long");
@@ -839,6 +847,22 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
             eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.WormSplit));
 
         }
+		else
+		{
+			ContactFilter2D filter = new ContactFilter2D();
+			filter.useTriggers = false;
+			filter.layerMask = 1 << LayerMask.NameToLayer("Player");
+			List<Collider2D> results = new List<Collider2D>();
+			Physics2D.OverlapCircle(transform.position, 1.5f, filter, results);
+
+			foreach (Collider2D result in results)
+			{
+				if (result.tag == "Blob")
+				{
+					PickupBlob(result.gameObject);
+				}
+			}
+		}
     }
 
 	public void OnInteract(InputAction.CallbackContext context)

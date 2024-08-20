@@ -16,8 +16,7 @@ public partial class Constants
 
 		public class Music
 		{
-            public const string MainMenuTheme = "";
-
+            public const string MainMenuTheme = "MainMenu";
             public const string Level1Theme = "Level1";
 			public const string Level2Theme = "Level2";
 			public const string Level3Theme = "Level3";

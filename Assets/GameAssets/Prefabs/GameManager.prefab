@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 4075366233515942886}
   sfxSource: {fileID: 7381655078699381588}
-  mainMenuTheme: {fileID: 0}
+  mainMenu: {fileID: 8300000, guid: 9de0b4b4ba61754439f52d3effdac38c, type: 3}
   theme1: {fileID: 8300000, guid: 9de0b4b4ba61754439f52d3effdac38c, type: 3}
   theme2: {fileID: 8300000, guid: 65e8ad06bdc9abd469489f86700f2e9d, type: 3}
   theme3: {fileID: 8300000, guid: 1d3d887d0e7b3aa4f80bae9e8c4da81d, type: 3}

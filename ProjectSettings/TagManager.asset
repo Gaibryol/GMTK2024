@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Long
   - Short
+  - Blob
   layers:
   - Default
   - TransparentFX
