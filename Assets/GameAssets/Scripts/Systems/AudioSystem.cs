@@ -126,7 +126,7 @@ public class AudioSystem : MonoBehaviour
 		{
 			musicSource.Stop();
 			musicSource.clip = music[song];
-			musicSource.loop = false;
+			musicSource.loop = true;
 			musicSource.Play();
 			musicSource.time = time;
 		}
@@ -140,7 +140,7 @@ public class AudioSystem : MonoBehaviour
 	{
 		musicSource.Stop();
 		musicSource.clip = song;
-		musicSource.loop = false;
+		musicSource.loop = true;
 		musicSource.Play();
 		musicSource.time = time;
 	}
