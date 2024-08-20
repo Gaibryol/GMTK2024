@@ -968,7 +968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9046498043404205517, guid: d1c3b6cde96d407459994a2f239e42de, type: 3}
       propertyPath: nextLevel
-      value: Level5
+      value: Ending
       objectReference: {fileID: 0}
     - target: {fileID: 9046498043404205517, guid: d1c3b6cde96d407459994a2f239e42de, type: 3}
       propertyPath: levelNumber

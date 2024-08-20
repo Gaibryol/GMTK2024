@@ -113,7 +113,7 @@ public class AudioSystem : MonoBehaviour
 	{
 		oldMusic = musicSource.clip;
 		oldTime = musicSource.time;
-		StartCoroutine(FadeToSong(inEvent.Payload.MusicName));
+		StartCoroutine(FadeToSong(inEvent.Payload.MusicName, 0, false));
 	}
 
 	private void StopTemporaryMusicHandler(BrokerEvent<AudioEvents.StopTemporaryMusic> inEvent)
@@ -138,13 +138,13 @@ public class AudioSystem : MonoBehaviour
 		musicSource.Stop();
 	}
 
-	private void PlayMusic(string song, float time = 0f)
+	private void PlayMusic(string song, float time = 0f, bool loop = true)
 	{
 		if (music.ContainsKey(song))
 		{
 			musicSource.Stop();
 			musicSource.clip = music[song];
-			musicSource.loop = true;
+			musicSource.loop = loop;
 			musicSource.Play();
 			musicSource.time = time;
 		}
@@ -154,16 +154,16 @@ public class AudioSystem : MonoBehaviour
 		}
 	}
 
-	private void PlayMusic(AudioClip song, float time = 0f)
+	private void PlayMusic(AudioClip song, float time = 0f, bool loop = true)
 	{
 		musicSource.Stop();
 		musicSource.clip = song;
-		musicSource.loop = true;
+		musicSource.loop = loop;
 		musicSource.Play();
 		musicSource.time = time;
 	}
 
-	private IEnumerator FadeToSong(string song, float time = 0f)
+	private IEnumerator FadeToSong(string song, float time = 0f, bool loop = true)
 	{
 		while (musicSource.volume > 0)
 		{
@@ -171,7 +171,7 @@ public class AudioSystem : MonoBehaviour
 			yield return null;
 		}
 
-		PlayMusic(song, time);
+		PlayMusic(song, time, loop);
 
 		while (musicSource.volume < musicVolume)
 		{
@@ -180,7 +180,7 @@ public class AudioSystem : MonoBehaviour
 		}
 	}
 
-	private IEnumerator FadeToSong(AudioClip song, float time = 0f)
+	private IEnumerator FadeToSong(AudioClip song, float time = 0f, bool loop = true)
 	{
 		while (musicSource.volume > 0)
 		{
@@ -188,7 +188,7 @@ public class AudioSystem : MonoBehaviour
 			yield return null;
 		}
 
-		PlayMusic(song, time);
+		PlayMusic(song, time, loop);
 
 		while (musicSource.volume < musicVolume)
 		{

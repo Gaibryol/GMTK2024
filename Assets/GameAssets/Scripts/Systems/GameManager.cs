@@ -59,7 +59,11 @@ public class GameManager : MonoBehaviour
 			PlayerPrefs.SetInt(currentSceneName, starsCollected);
 			PlayerPrefs.Save();
 		}
-        StartCoroutine(HandleLevelEnd(@event));
+		
+		if (@event.Payload.NextLevel != "Ending")
+		{
+			StartCoroutine(HandleLevelEnd(@event));
+		}
     }
 
     private IEnumerator HandleLevelEnd(BrokerEvent<LevelEvents.EndLevel> @event)

@@ -21,9 +21,13 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private Sprite starOff;
 	private List<GameObject> spawnedStars;
 
+	[SerializeField, Header("Ending")] private GameObject endPanel;
+
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
 	private bool audioMuted;
+
+	private Coroutine endingCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -61,8 +65,13 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
-	private void OnHomeButtonPressed()
+	public void OnHomeButtonPressed()
 	{
+		if (endingCoroutine != null)
+		{
+			StopCoroutine(endingCoroutine);
+		}
+
 		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
 		SceneManager.LoadScene("MainMenu");
 	}
@@ -94,6 +103,27 @@ public class UIManager : MonoBehaviour
 		eventBroker.Publish(this, new LevelEvents.EndLevel("", false));
 	}
 
+	private void EndLevelHandler(BrokerEvent<LevelEvents.EndLevel> inEvent)
+	{
+		if (inEvent.Payload.NextLevel == "Ending")
+		{
+			StartCoroutine(EndingBeginCoroutine());
+		}
+	}
+
+	private IEnumerator EndingBeginCoroutine()
+	{
+		yield return new WaitForSeconds(5f);
+		endPanel.SetActive(true);
+		endingCoroutine = StartCoroutine(EndingCoroutine());
+	}
+
+	private IEnumerator EndingCoroutine()
+	{
+		yield return new WaitForSeconds(10f);
+		OnHomeButtonPressed();
+	}
+
 	private void OnEnable()
 	{
 		homeButton.onClick.AddListener(OnHomeButtonPressed);
@@ -101,6 +131,7 @@ public class UIManager : MonoBehaviour
 		restartButton.onClick.AddListener(OnRestartButtonPressed);
 
 		eventBroker.Subscribe<StarEvents.AddStar>(AddStarHandler);
+		eventBroker.Subscribe<LevelEvents.EndLevel>(EndLevelHandler);
 	}
 
 	private void OnDisable()
@@ -110,5 +141,6 @@ public class UIManager : MonoBehaviour
 		restartButton.onClick.RemoveListener(OnRestartButtonPressed);
 
 		eventBroker.Unsubscribe<StarEvents.AddStar>(AddStarHandler);
+		eventBroker.Unsubscribe<LevelEvents.EndLevel>(EndLevelHandler);
 	}
 }
