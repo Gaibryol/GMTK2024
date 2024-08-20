@@ -386,10 +386,17 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	private void HandleBones()
 	{
+		if (!canMove)
+		{
+			boneBlend = 0.5f;
+			boneTailBlend = -0.5f;
+			return;
+		}
+
 		if (dropping)
 		{
-			boneBlend = 0f;
-			boneTailBlend = 0f;
+			boneBlend = 0.5f;
+			boneTailBlend = -0.5f;
 			return;
 		}
 
@@ -739,6 +746,12 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 
 	private void HandleScale()
 	{
+		if (!canMove)
+		{
+			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), Mathf.Abs(transform.localScale.z));
+			return;
+		}
+
 		if (dropping)
 		{
 			if (lastInput == Constants.Player.Inputs.A)
