@@ -52,11 +52,18 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelEnd(BrokerEvent<LevelEvents.EndLevel> @event)
     {
+        StartCoroutine(HandleLevelEnd(@event));
+    }
+
+    private IEnumerator HandleLevelEnd(BrokerEvent<LevelEvents.EndLevel> @event)
+    {
+        yield return new WaitForSeconds(@event.Payload.TransitionDelay);
         if (@event.Payload.Victory)
         {
             SceneManager.LoadScene(@event.Payload.NextLevel);
 
-        } else
+        }
+        else
         {
             SceneManager.LoadScene(currentSceneName);
 

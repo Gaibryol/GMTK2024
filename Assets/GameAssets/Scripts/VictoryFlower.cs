@@ -15,7 +15,7 @@ public class VictoryFlower : MonoBehaviour
         if (activated) { return; }
 
         activated = true;
-        eventBroker.Publish(this, new LevelEvents.EndLevel(nextLevel, true));
+        eventBroker.Publish(this, new LevelEvents.EndLevel(nextLevel, true, 5f));
         return;
     }
 

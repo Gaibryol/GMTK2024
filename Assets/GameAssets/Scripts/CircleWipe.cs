@@ -33,7 +33,7 @@ public class CircleWipe : MonoBehaviour
         if (!active) return;
         TrackTarget();
 
-        fillAmount = Mathf.MoveTowards(fillAmount, 0.07f, Time.deltaTime * 10f);
+        fillAmount = Mathf.MoveTowards(fillAmount, 0.07f, Time.deltaTime * 1f);
         material.SetFloat(fillAmountID, fillAmount);
 
     }
@@ -53,7 +53,7 @@ public class CircleWipe : MonoBehaviour
     {
         if (@event.Payload.Victory)
         {
-            //active = true;
+            active = true;
         }
     }
 

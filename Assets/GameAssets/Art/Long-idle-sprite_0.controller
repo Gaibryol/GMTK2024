@@ -344,7 +344,7 @@ AnimatorStateMachine:
     m_Position: {x: 470, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1533070923971750128}
-    m_Position: {x: 470, y: 420, z: 0}
+    m_Position: {x: 140, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1776056270982065657}
     m_Position: {x: 690, y: 300, z: 0}
@@ -375,7 +375,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 190, y: 20, z: 0}
   m_EntryPosition: {x: -130, y: 30, z: 0}
-  m_ExitPosition: {x: 700, y: -30, z: 0}
+  m_ExitPosition: {x: 710, y: -30, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 6771550972017744581}
 --- !u!1102 &-813920432749667647
@@ -501,12 +501,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: LongVictoryDance
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: ShortDandelionBool
     m_Type: 4
     m_DefaultFloat: 0
@@ -520,6 +514,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: ShortDroppingBool
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: LongVictoryDance
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -714,6 +714,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: LongDandelionBool
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: LongVictoryDance
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6771550972017744581}
   m_Solo: 0
@@ -747,9 +750,9 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_ExitTime: 1
   m_HasExitTime: 0
-  m_HasFixedDuration: 0
+  m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 0

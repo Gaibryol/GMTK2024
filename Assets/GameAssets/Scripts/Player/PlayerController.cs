@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.U2D.Animation;
@@ -116,14 +117,32 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			rbody.velocityX = move.ReadValue<float>() * movespeed * Time.deltaTime;
 			return;
 		}
+		ContactFilter2D contactFilter = new ContactFilter2D();
+		contactFilter.useTriggers = false;
+		contactFilter.useLayerMask = true;
+		contactFilter.layerMask = 1 << LayerMask.NameToLayer("Wall");
 
-		RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
-		RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, Constants.Player.RaycastDistance.x, 1 << LayerMask.NameToLayer("Wall"));
-		RaycastHit2D bottomHit = Physics2D.Raycast(transform.position, Vector2.down, Constants.Player.RaycastDistance.y, 1 << LayerMask.NameToLayer("Wall"));
-		RaycastHit2D bottomRightHit = Physics2D.Raycast(transform.position, new Vector2(1f, -1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
-		RaycastHit2D bottomLeftHit = Physics2D.Raycast(transform.position, new Vector2(-1f, -1f), Constants.Player.DiagonalRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
 
-		if (rightHit.collider != null)
+		RaycastHit2D[] hitResults = new RaycastHit2D[1];
+		int rightHitCount = Physics2D.Raycast(transform.position, Vector2.right, contactFilter, hitResults, Constants.Player.RaycastDistance.x);
+		RaycastHit2D rightHit = rightHitCount == 0 ? new RaycastHit2D() : hitResults[0];
+
+        int leftHitCount = Physics2D.Raycast(transform.position, Vector2.left, contactFilter, hitResults, Constants.Player.RaycastDistance.x);
+        RaycastHit2D leftHit = leftHitCount == 0 ? new RaycastHit2D() : hitResults[0];
+
+
+        int bottomHitCount = Physics2D.Raycast(transform.position, Vector2.down, contactFilter, hitResults, Constants.Player.RaycastDistance.y);
+        RaycastHit2D bottomHit = bottomHitCount == 0 ? new RaycastHit2D() : hitResults[0];
+
+
+        int bottomRightHitCount = Physics2D.Raycast(transform.position, new Vector2(1f, -1f), contactFilter, hitResults, Constants.Player.DiagonalRaycastDistance);
+        RaycastHit2D bottomRightHit = bottomRightHitCount == 0 ? new RaycastHit2D() : hitResults[0];
+
+
+        int bottomLeftHitCount = Physics2D.Raycast(transform.position, new Vector2(-1f, -1f), contactFilter, hitResults, Constants.Player.DiagonalRaycastDistance);
+        RaycastHit2D bottomLeftHit = bottomLeftHitCount == 0 ? new RaycastHit2D() : hitResults[0];
+
+        if (rightHit.collider != null)
 		{
 			if (rightHit.collider.isTrigger == true)
 			{
@@ -405,10 +424,21 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			tailDirection = transform.TransformDirection(transform.localScale.y > 0 ? Vector2.down : Vector2.up);
 			bodyDirection = transform.TransformDirection(Vector2.right);
 		}
-        
-        RaycastHit2D headHit = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, headDirection, Constants.Player.BoneRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
-		RaycastHit2D tailHit = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, tailDirection, Constants.Player.BoneRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
-		RaycastHit2D bodyHit = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, bodyDirection, Constants.Player.BoneDownRaycastDistance, 1 << LayerMask.NameToLayer("Wall"));
+
+        ContactFilter2D contactFilter = new ContactFilter2D();
+        contactFilter.useTriggers = false;
+        contactFilter.layerMask = 1 << LayerMask.NameToLayer("Wall");
+		contactFilter.useLayerMask = true;
+
+        RaycastHit2D[] hitResults = new RaycastHit2D[1];
+		int headHitCount = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, headDirection, contactFilter, hitResults, Constants.Player.BoneRaycastDistance);
+		RaycastHit2D headHit = headHitCount == 0 ? new RaycastHit2D() : hitResults[0];
+
+        int tailhitCount = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, tailDirection, contactFilter, hitResults, Constants.Player.BoneRaycastDistance);
+        RaycastHit2D tailHit = tailhitCount == 0 ? new RaycastHit2D() : hitResults[0];
+
+        int bodyHitCount = Physics2D.CircleCast(transform.position, Constants.Player.CirclecastRadius, bodyDirection, contactFilter, hitResults, Constants.Player.BoneDownRaycastDistance);
+		RaycastHit2D bodyHit = bodyHitCount == 0 ? new RaycastHit2D() : hitResults[0];
 
 		//Debug.DrawRay(transform.position, headDirection, Color.red, 5f);
 		//Debug.DrawRay(transform.position, tailDirection, Color.cyan, 5f);
@@ -865,9 +895,12 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		drop.Enable();
 		split.Enable();
 		interact.Enable();
+
+        eventBroker.Subscribe<LevelEvents.EndLevel>(EndLevelHandler);
 	}
 
-	private void OnDisable()
+   
+    private void OnDisable()
 	{
 		move.performed -= OnMove;
 		drop.performed -= OnDrop;
@@ -878,9 +911,19 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		drop.Disable();
 		split.Disable();
 		interact.Disable();
-	}
 
-	public bool CanBendGrass()
+        eventBroker.Unsubscribe<LevelEvents.EndLevel>(EndLevelHandler);
+
+    }
+
+    private void EndLevelHandler(BrokerEvent<LevelEvents.EndLevel> @event)
+    {
+		anim.SetBool("LongVictoryDance", true);
+		canMove = false;
+		rbody.velocity = Vector2.zero;
+    }
+
+    public bool CanBendGrass()
 	{
 		return rbody.mass > 1;
 	}
