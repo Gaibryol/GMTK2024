@@ -48,11 +48,11 @@ public class MainMenuManager : MonoBehaviour
 	{
 		int levelReached = PlayerPrefs.GetInt("LevelReached", 1);
 
-		level1Button.interactable = levelReached >= 1 ? true : false;
-		level2Button.interactable = levelReached >= 2 ? true : false;
-		level3Button.interactable = levelReached >= 3 ? true : false;
-		level4Button.interactable = levelReached >= 4 ? true : false;
-		level5Button.interactable = levelReached >= 5 ? true : false;
+		level1Button.gameObject.SetActive(levelReached >= 1);
+		level2Button.gameObject.SetActive(levelReached >= 2);
+		level3Button.gameObject.SetActive(levelReached >= 3);
+		level4Button.gameObject.SetActive(levelReached >= 4);
+		level5Button.gameObject.SetActive(levelReached >= 5);
 
 		levelSelectPanel.SetActive(true);
 	}

@@ -12,9 +12,12 @@ public class GameManager : MonoBehaviour
 
     private string currentSceneName;
 
+	private int starsCollected;
+
     private void Start()
     {
         eventBroker.Publish(this, new AudioEvents.PlayMusic(currentSceneName));
+		starsCollected = 0;
     }
 
     private void OnEnable()
@@ -34,24 +37,23 @@ public class GameManager : MonoBehaviour
 
     private void OnAddStar(BrokerEvent<StarEvents.AddStar> @event)
     {
-        if (!PlayerPrefs.HasKey(currentSceneName))
-        {
-            PlayerPrefs.SetInt(currentSceneName, 0);
-        }
-        PlayerPrefs.SetInt(currentSceneName, PlayerPrefs.GetInt(currentSceneName) + 1);
-        PlayerPrefs.Save();
+		starsCollected += 1;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        PlayerPrefs.SetInt(currentSceneName, 0);
-
         currentSceneName = scene.name;
     }
 
-
     private void OnLevelEnd(BrokerEvent<LevelEvents.EndLevel> @event)
     {
+		int highestStars = PlayerPrefs.GetInt(currentSceneName, 0);
+
+		if (starsCollected > highestStars)
+		{
+			PlayerPrefs.SetInt(currentSceneName, starsCollected);
+			PlayerPrefs.Save();
+		}
         StartCoroutine(HandleLevelEnd(@event));
     }
 
