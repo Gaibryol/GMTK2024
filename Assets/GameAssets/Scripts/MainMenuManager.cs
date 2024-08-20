@@ -14,10 +14,77 @@ public class MainMenuManager : MonoBehaviour
 	[SerializeField] private UnityEngine.UI.Button level4Button;
 	[SerializeField] private UnityEngine.UI.Button level5Button;
 
+	[SerializeField, Header("Powerpoint")] private GameObject powerpointPanel;
+	[SerializeField] private Image ppScreen;
+	[SerializeField] private List<Sprite> ppImages;
+
+	[SerializeField, Header("Audio Toggle")] private GameObject audioToggle;
+	[SerializeField] private Sprite audioOn;
+	[SerializeField] private Sprite audioOff;
+
+	private int ppIndex = 0;
+
+	private Coroutine currentPPCoroutine;
+
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
+
+	private bool audioMuted;
+
+	private void Start()
+	{
+		// Check if music volume is set to 0
+		audioMuted = PlayerPrefs.GetFloat(Constants.Audio.MusicVolumePP, Constants.Audio.DefaultMusicVolume) == 0f && PlayerPrefs.GetFloat(Constants.Audio.SFXVolumePP, Constants.Audio.DefaultSFXVolume) == 0f;
+		if (audioMuted)
+		{
+			audioToggle.GetComponent<Image>().sprite = audioOff;
+		}
+		else
+		{
+			audioToggle.GetComponent<Image>().sprite = audioOn;
+		}
+	}
+
+	public void OnRunPowerPoint()
+	{
+		powerpointPanel.SetActive(true);
+		ppScreen.sprite = ppImages[0];
+		StartCoroutine(ppCoroutine());
+	}
+
+	public void NextPPImage()
+	{
+		if (currentPPCoroutine != null)
+		{
+			StopCoroutine(currentPPCoroutine);
+		}
+
+		if (ppIndex == ppImages.Count - 1)
+		{
+			eventBroker.Publish(this, new LevelEvents.EndLevel(Constants.Scenes.Level1, true));
+			return;
+		}
+
+		ppIndex += 1;
+		ppScreen.sprite = ppImages[ppIndex];
+		currentPPCoroutine = StartCoroutine(ppCoroutine());
+	}
+
+	private IEnumerator ppCoroutine()
+	{
+		yield return new WaitForSeconds(3f);
+		NextPPImage();
+	}
 
 	public void OnLevelPressed(int level)
 	{
+		if (PlayerPrefs.GetInt("HasWatchedPP", 0) == 0)
+		{
+			OnRunPowerPoint();
+			PlayerPrefs.SetInt("HasWatchedPP", 1);
+			PlayerPrefs.Save();
+			return;
+		}
+
 		string levelString = "";
 		switch (level)
 		{
@@ -44,7 +111,28 @@ public class MainMenuManager : MonoBehaviour
 		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
 		eventBroker.Publish(this, new LevelEvents.EndLevel(levelString, true));
 	}
-	
+
+	public void OnSoundButtonPressed()
+	{
+		if (audioMuted)
+		{
+			// Audio was muted, unmute
+			eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
+			eventBroker.Publish(this, new AudioEvents.ChangeMusicVolume(Constants.Audio.DefaultMusicVolume));
+			eventBroker.Publish(this, new AudioEvents.ChangeSFXVolume(Constants.Audio.DefaultSFXVolume));
+			audioMuted = false;
+			audioToggle.GetComponent<Image>().sprite = audioOn;
+		}
+		else
+		{
+			// Audio unmuted, mute
+			eventBroker.Publish(this, new AudioEvents.ChangeMusicVolume(0f));
+			eventBroker.Publish(this, new AudioEvents.ChangeSFXVolume(0f));
+			audioMuted = true;
+			audioToggle.GetComponent<Image>().sprite = audioOff;
+		}
+	}
+
 	public void OpenLevelSelectPanel()
 	{
 		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
