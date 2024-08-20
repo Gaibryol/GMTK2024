@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +13,13 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private Image uiBackground;
 	[SerializeField] private Sprite soundOnImage;
 	[SerializeField] private Sprite soundOffImage;
+
+	[SerializeField, Header("Stars")] private int numStars;
+	[SerializeField] private Transform starParent;
+	[SerializeField] private GameObject starPrefab;
+	[SerializeField] private Sprite starOn;
+	[SerializeField] private Sprite starOff;
+	private List<GameObject> spawnedStars;
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
@@ -30,7 +38,28 @@ public class UIManager : MonoBehaviour
 		{
 			uiBackground.sprite = soundOnImage;
 		}
+
+		spawnedStars = new List<GameObject>();
+		for (int i = 0; i < numStars; i++)
+		{
+			GameObject star = Instantiate(starPrefab, starParent);
+			star.GetComponent<Image>().sprite = starOff;
+			spawnedStars.Add(star);
+		}
     }
+
+	private void AddStarHandler(BrokerEvent<StarEvents.AddStar> inEvent)
+	{
+		// Find star that isn't turned on yet
+		for (int i = 0; i < spawnedStars.Count; i++)
+		{
+			if (spawnedStars[i].GetComponent<Image>().sprite == starOff)
+			{
+				spawnedStars[i].GetComponent<Image>().sprite = starOn;
+				return;
+			}
+		}
+	}
 
 	private void OnHomeButtonPressed()
 	{
@@ -70,6 +99,8 @@ public class UIManager : MonoBehaviour
 		homeButton.onClick.AddListener(OnHomeButtonPressed);
 		soundButton.onClick.AddListener(OnSoundButtonPressed);
 		restartButton.onClick.AddListener(OnRestartButtonPressed);
+
+		eventBroker.Subscribe<StarEvents.AddStar>(AddStarHandler);
 	}
 
 	private void OnDisable()
@@ -77,5 +108,7 @@ public class UIManager : MonoBehaviour
 		homeButton.onClick.RemoveListener(OnHomeButtonPressed);
 		soundButton.onClick.RemoveListener(OnSoundButtonPressed);
 		restartButton.onClick.RemoveListener(OnRestartButtonPressed);
+
+		eventBroker.Unsubscribe<StarEvents.AddStar>(AddStarHandler);
 	}
 }
