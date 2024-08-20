@@ -30,17 +30,21 @@ public class ButtonControlledPlatform : MonoBehaviour, IButtonInteractableListen
     public void OnButtonPressed()
     {
         active = true;
-        Debug.Log("pressed");
-        eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.PlatformDoorMove));
+        Vector2 target = startingPosition;
+        if (active)
+        {
+            target += positionOffset;
+        }
+        if (Vector2.Distance(transform.position, target) > .1f)
+        {
+            eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.PlatformDoorMove));
+        }
 
     }
 
     public void OnButtonReleased()
     {
         active = false;
-        Debug.Log("relessed");
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
