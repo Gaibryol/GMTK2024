@@ -16,10 +16,15 @@ public class AudioSystem : MonoBehaviour
 	[SerializeField] private AudioClip theme4;
 	[SerializeField] private AudioClip theme5;
 
-	[SerializeField, Header("SFX")] private AudioClip testSound;
-	[SerializeField] private AudioClip book;
-	[SerializeField] private AudioClip buttonClick;
-	[SerializeField] private AudioClip death;
+	[SerializeField, Header("SFX")] private AudioClip buttonPress;
+	[SerializeField] private AudioClip dandelion;
+	[SerializeField] private AudioClip invalid;
+	[SerializeField] private AudioClip mushroomJump;
+	[SerializeField] private AudioClip platformDoorMove;
+	[SerializeField] private AudioClip UIClick;
+	[SerializeField] private AudioClip WormFall;
+	[SerializeField] private AudioClip WormJoin;
+	[SerializeField] private AudioClip WormSplit;
 
 	private float musicVolume;
 	private float sfxVolume;
@@ -43,8 +48,16 @@ public class AudioSystem : MonoBehaviour
 		music.Add(Constants.Audio.Music.Level4Theme, theme4);
 		music.Add(Constants.Audio.Music.Level5Theme, theme5);
 
-		//sfx.Add(Constants.Audio.SFX.TestSound, testSound);
-	}
+		sfx.Add(Constants.Audio.SFX.ButtonPress, buttonPress);
+		sfx.Add(Constants.Audio.SFX.Dandelion, dandelion);
+		sfx.Add(Constants.Audio.SFX.Invalid, invalid);
+		sfx.Add(Constants.Audio.SFX.MushroomJump, mushroomJump);
+		sfx.Add(Constants.Audio.SFX.PlatformDoorMove, platformDoorMove);
+		sfx.Add(Constants.Audio.SFX.UIClick, UIClick);
+		sfx.Add(Constants.Audio.SFX.WormFall, WormFall);
+		sfx.Add(Constants.Audio.SFX.WormJoin, WormJoin);
+		sfx.Add(Constants.Audio.SFX.WormSplit, WormSplit);
+    }
 
 	private void ChangeMusicVolumeHandler(BrokerEvent<AudioEvents.ChangeMusicVolume> inEvent)
 	{

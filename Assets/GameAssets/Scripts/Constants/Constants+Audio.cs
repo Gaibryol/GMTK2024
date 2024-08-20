@@ -27,7 +27,16 @@ public partial class Constants
 
 		public class SFX
 		{
+            public const string ButtonPress = "ButtonPress";
+            public const string Dandelion = "Dandelion";
+            public const string Invalid = "Invalid";
+            public const string MushroomJump = "MushroomJump";
+            public const string PlatformDoorMove = "PlatformDoorMove";
+            public const string UIClick = "UIClick";
+            public const string WormFall = "WormFall";
+            public const string WormJoin = "WormJoin";
+            public const string WormSplit = "WormSplit";
 
-		}
-	}
+        }
+    }
 }

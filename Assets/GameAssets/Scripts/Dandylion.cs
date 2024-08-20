@@ -24,6 +24,7 @@ public class Dandylion : MonoBehaviour, IInteractable
     [SerializeField] private DandylionState state = DandylionState.Start;
 
     private IDandylion attachedSource;
+    private EventBrokerComponent eventBrokerComponent = new EventBrokerComponent();
 
     void Start()
     {
@@ -72,7 +73,7 @@ public class Dandylion : MonoBehaviour, IInteractable
         state = DandylionState.Playing;
 
         attachedSource = dandylionInteractable;
-
+        eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.Dandelion));
         return true;
     }
 

@@ -10,6 +10,7 @@ public class ButtonControlledPlatform : MonoBehaviour, IButtonInteractableListen
     private Vector2 startingPosition;
 
     private bool active;
+    private EventBrokerComponent eventBrokerComponent = new EventBrokerComponent();
 
     private void Start()
     {
@@ -30,6 +31,8 @@ public class ButtonControlledPlatform : MonoBehaviour, IButtonInteractableListen
     {
         active = true;
         Debug.Log("pressed");
+        eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.PlatformDoorMove));
+
     }
 
     public void OnButtonReleased()

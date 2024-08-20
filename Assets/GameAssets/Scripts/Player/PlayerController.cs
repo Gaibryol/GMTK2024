@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
 	private List<Transform> groundedColliders;
+    private EventBrokerComponent eventBrokerComponent = new EventBrokerComponent();
 
     public float forceMultiplier { get { return rbody.mass == 1 ? 0.5f : 1f; } }
 
@@ -806,8 +807,9 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		rbody.velocity = Vector2.zero;
 		rbody.gravityScale = 1f;
 		dropping = true;
+        eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.WormFall));
 
-		boneBlend = 0f;
+        boneBlend = 0f;
 		boneTailBlend = 0f;
 
 		transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), Mathf.Abs(transform.localScale.z));
@@ -833,8 +835,11 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 			{
 				obj.GetComponent<Collider2D>().enabled = true;
 			}
-		}
-	}
+
+            eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.WormSplit));
+
+        }
+    }
 
 	public void OnInteract(InputAction.CallbackContext context)
 	{
@@ -873,9 +878,11 @@ public class PlayerController : MonoBehaviour, IBounceable, IButtonInteractable,
 		{
 			obj.GetComponent<Collider2D>().enabled = false;
 		}
-	}
+        eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.WormJoin));
 
-	private void OnEnable()
+    }
+
+    private void OnEnable()
 	{
 		move.performed += OnMove;
 		drop.performed += OnDrop;

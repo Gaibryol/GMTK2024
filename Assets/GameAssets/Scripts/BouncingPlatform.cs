@@ -13,6 +13,7 @@ public class BouncingPlatform : MonoBehaviour
     private Animator animator;
     
     [SerializeField] private float upwardsForce = 7f;
+    private EventBrokerComponent eventBrokerComponent = new EventBrokerComponent();
 
     private void Start()
     {
@@ -38,6 +39,8 @@ public class BouncingPlatform : MonoBehaviour
         {
             animator.SetTrigger("Bounce");
         }
+        eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.MushroomJump));
+
         rbody.AddForceY(upwardsForce * bounceable.forceMultiplier * rbody.mass, ForceMode2D.Impulse);
 
 		collision.gameObject.GetComponent<Animator>().SetTrigger("LongJumpTrigger");

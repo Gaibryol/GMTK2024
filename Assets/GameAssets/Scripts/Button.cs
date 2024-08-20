@@ -20,6 +20,9 @@ public class Button : MonoBehaviour
     [SerializeField] private Sprite offSprite;
     [SerializeField] private Sprite onSprite;
 
+    private EventBrokerComponent eventBrokerComponent = new EventBrokerComponent();
+
+
     void Start()
     {
         interactableListener = buttonListener.GetComponent<IButtonInteractableListener>();
@@ -44,6 +47,7 @@ public class Button : MonoBehaviour
         {
             interactableListener.OnButtonPressed();
             spriteRenderer.sprite = onSprite;
+            eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
         }
     }
 
@@ -60,6 +64,7 @@ public class Button : MonoBehaviour
         {
             interactableListener.OnButtonReleased();
             spriteRenderer.sprite = offSprite;
+            eventBrokerComponent.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonPress));
         }
     }
 }
